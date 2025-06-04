@@ -1,26 +1,25 @@
-<h2>Log in</h2>
+<div class="session-form-container">
+  <h2 class="session-heading">
+    ご登録された方は、お名前とパスワードを入力して<br />
+    ご自身のページを開いてください
+  </h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <div class="mb-3">
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class: "form-control", placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email" %>
+    </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="mb-3">
+      <%= f.label :password, "パスワードを入力" %>
+      <%= f.password_field :password, class: "form-control", autocomplete: "current-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "マイページに入る", class: "btn btn-success w-100" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+  <%= render "public/shared/links" %>
+</div>
