@@ -1,2 +1,35 @@
-<h1>Public::Registrations#new</h1>
-<p>Find me in app/views/public/registrations/new.html.erb</p>
+<div class="registration-form-container">
+  <h2 class="registration-heading">新規登録</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
+
+    <div class="mb-3">
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class: "form-control", placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :password, "パスワードを入力" %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %>文字以上)</em>
+      <% end %>
+      <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :password_confirmation, "パスワード（確認用）" %>
+      <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+    </div>
+
+    <p class="form-note small text-muted">
+      ※メールアドレスとパスワードは忘れないようにメモをしておくのをおすすめします。忘れてしまうと登録した内容が使えなくなってしまう可能性があります。
+    </p>
+
+    <div class="mb-3">
+      <%= f.submit "登録ボタン", class: "btn btn-success w-100" %>
+    </div>
+  <% end %>
+
+  <%= render "public/shared/links" %>
+</div>
