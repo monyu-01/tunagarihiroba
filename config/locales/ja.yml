@@ -1,0 +1,13 @@
+ja:
+ activerecord:
+   models:
+     member: メンバー
+     posts: 投稿
+   attributes:
+     member:
+       self_introduction: 自己紹介
+     posts:
+       title: タイトル
+       body: 本文
+
+     
