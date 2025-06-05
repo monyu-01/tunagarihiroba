@@ -1,4 +1,9 @@
-<div class="nav flex-column">
+<div class="text-center my-3 sidebar-logo">
+  <%= link_to root_path, class: "d-inline-block navbar-brand " do %>
+    <%= image_tag "tsunagari_logo_flower.png", alt: "つながり広場のロゴ", width: 100, height: 100 %>
+  <% end %>
+</div>
+<div class="flex-column nav">
   <%= link_to new_post_path, class: "nav-link text-body" do %>
     <i class="fa-regular fa-pen-to-square me-2"></i> 新規投稿
   <% end %>
@@ -34,6 +39,6 @@
   <%= link_to destroy_member_session_path, method: :delete, class: "nav-link text-body" do %>
     <i class="fa-solid fa-house me-2"></i> ホームに戻る
   <% end %>
-</div><!-- .nav.flex-column -->
+</div><%# flex-column nav %>
 
      

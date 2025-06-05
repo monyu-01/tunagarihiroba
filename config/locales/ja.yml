@@ -6,8 +6,7 @@ ja:
    attributes:
      member:
        self_introduction: 自己紹介
-     posts:
+     post:
        title: タイトル
        body: 本文
-
-     
+ 
