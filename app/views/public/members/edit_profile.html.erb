@@ -1,12 +1,5 @@
 <h1>マイページを編集する</h1>
-<% if @member.errors.any? %>
-  <p class="error-header">入力内容に不備があるようです。</p>
-  <ul>
-    <% @member.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render 'layouts/form_error_messages', object: @member %>
 <div class="profile-edit-container">
   <%= form_with model: @member, url: update_profile_path, method: :patch do |f| %>
     <h4>プロフィール画像（任意）</h4>

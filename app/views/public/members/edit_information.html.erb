@@ -1,0 +1,26 @@
+<h1>登録情報の変更</h1>
+<%= link_to "退会する", unsubscribe_path, class: "btn btn-success" %>
+<%= render 'layouts/form_error_messages', object: @member, locals: { current_password_required: @current_password_required } %>
+<%= form_with model: current_member, url: update_information_path, method: :patch do |f| %>
+  <div class="mb-3">
+    <%= f.label :email, "メールアドレスを入力" %>
+    <%= f.email_field :email, placeholder: "新しく設定したいメールアドレスを入力してください", class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :password, "パスワードを入力" %>
+    <%= f.password_field :password, placeholder: "新しく設定したいパスワードを入力してください", class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :current_password, "本人確認のためのパスワード" %>
+    <%= f.password_field :current_password, placeholder: "登録しているパスワードを入力してください", class: "form-control" %>
+  </div>
+
+  <p class="form-note small text-muted">
+    ※メールアドレスとパスワードは忘れないようにメモをしておくのをおすすめします。忘れてしまうと登録した内容が使えなくなってしまう可能性があります。
+  </p>
+
+  <%= f.submit "変更内容を送信", class: "btn btn-success" %>
+<% end %>
+

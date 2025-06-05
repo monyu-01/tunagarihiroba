@@ -8,12 +8,12 @@
 
     <div class="mb-3">
       <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email, class: "form-control", placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email" %>
+      <%= f.email_field :email, placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email", class: "form-control" %>
     </div>
 
     <div class="mb-3">
       <%= f.label :password, "パスワードを入力" %>
-      <%= f.password_field :password, class: "form-control", autocomplete: "current-password" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
     </div>
 
     <div class="actions">

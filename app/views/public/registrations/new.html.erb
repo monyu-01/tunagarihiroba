@@ -6,7 +6,7 @@
   
       <div class="mb-3">
         <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email, class: "form-control", placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email", class: "form-control" %>
       </div>
   
       <div class="mb-3">
@@ -14,12 +14,12 @@
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %>文字以上)</em>
         <% end %>
-        <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
       </div>
   
       <div class="mb-3">
         <%= f.label :password_confirmation, "パスワード（確認用）" %>
-        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
       </div>
   
       <p class="form-note small text-muted">

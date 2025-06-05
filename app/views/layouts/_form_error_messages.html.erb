@@ -1,0 +1,8 @@
+<% if object.errors.any? %>
+  <p class="error-header">入力内容に不備があるようです。</p>
+  <ul>
+    <% object.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
