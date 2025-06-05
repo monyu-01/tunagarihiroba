@@ -6,4 +6,7 @@ class Member < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
+  validates :name,  presence: true
+  validates :name, presence: true, on: :update
+
 end

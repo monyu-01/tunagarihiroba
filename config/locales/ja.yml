@@ -5,6 +5,7 @@ ja:
      posts: 投稿
    attributes:
      member:
+       name: 名前
        self_introduction: 自己紹介
      post:
        title: タイトル
