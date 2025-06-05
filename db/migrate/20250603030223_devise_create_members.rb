@@ -7,10 +7,9 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
       t.datetime :remember_created_at
-      t.string :name, null: false
+      t.string :name
       t.text :self_introduction
-      # ユーザーが安心して利用できるよう、入力は任意とし、強制バリデーションは避ける
-
+      
       t.timestamps null: false
     end
 

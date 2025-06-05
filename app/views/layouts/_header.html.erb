@@ -1,0 +1,32 @@
+ <!-- ヘッダーは仮スタイル（今後Figmaのデザインにあわせて調整予定） -->
+      <header class="header">
+        <div class="header-row">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <%= link_to image_tag('tsunagari_logo_flower.png', alt: 'つながり広場のロゴ', width: 120, height: 120), root_path, class: "navbar-brand" %>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <%= link_to "はじめての方へ", new_member_registration_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "マイページに入る", new_member_session_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "のぞいてみる","#", class: "nav-link" %>
+                  </li> 
+                  <li class="nav-item">
+                    <%= link_to "サイトの使い方", how_to_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "つながり広場へ", root_path, class: "nav-link" %>
+                  </li>
+                </ul>
+              </div>
+            </div><%# container-fluid %>
+          </nav>
+        </div><%# header-row %>
+      </header>

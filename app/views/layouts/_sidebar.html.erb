@@ -1,0 +1,39 @@
+<div class="nav flex-column">
+  <%= link_to new_post_path, class: "nav-link text-body" do %>
+    <i class="fa-regular fa-pen-to-square me-2"></i> 新規投稿
+  <% end %>
+
+  <%= link_to "#", class: "nav-link text-body" do %><%# member_path(current_member) %>
+    <i class="fa-regular fa-file-lines me-2"></i> 自分の投稿一覧
+  <% end %>
+  
+  <%= link_to saved_posts_path, class: "nav-link text-body" do %>
+    <i class="fa-regular fa-bookmark me-2"></i> お気に入り投稿一覧
+  <% end %>
+
+  <%= link_to "#", class: "nav-link text-body" do %><%# followings_member_path(current_member) %>
+    <i class="fa-regular fa-thumbs-up me-2"></i> 応援している人の投稿一覧
+  <% end %>
+
+  <%= link_to posts_path, class: "nav-link text-body" do %>
+    <i class="fa-solid fa-magnifying-glass me-2"></i> 気になる投稿を検索
+  <% end %>
+
+  <%= link_to "#", class: "nav-link text-body" do %>
+    <i class="fa-regular fa-bell me-2"></i> 通知一覧
+  <% end %>
+
+  <%= link_to "#", class: "nav-link text-body" do %><%# member_path(current_member) %>
+    <i class="fa-regular fa-user me-2"></i> マイページ
+  <% end %>
+  
+  <%= link_to how_to_path, class: "nav-link text-body" do %>
+   <i class="fa-solid fa-book me-2"></i> サイトの使い方
+  <% end %>
+
+  <%= link_to destroy_member_session_path, method: :delete, class: "nav-link text-body" do %>
+    <i class="fa-solid fa-house me-2"></i> ホームに戻る
+  <% end %>
+</div><!-- .nav.flex-column -->
+
+     

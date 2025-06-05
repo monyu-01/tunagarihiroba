@@ -12,32 +12,22 @@
   </head>
 
   <body>
-    <!-- ヘッダーは仮スタイル（今後Figmaのデザインにあわせて調整予定） -->
-    <header class="header">
-      <div class="header-row">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="/"><%= image_tag('logo.png', alt: 'つながり広場のロゴ', width: 120, height: 120) %></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="/members/sign_up">はじめての方へ</a></li>
-                <li class="nav-item"><a class="nav-link" href="/members/:id">マイページに入る</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">のぞいてみる</a></li>
-                <li class="nav-item"><a class="nav-link" href="/how_to">サイトの使い方</a></li>
-                <li class="nav-item"><a class="nav-link" href="/">つながり広場へ</a></li>
-              </ul>
-            </div>
+    <% if member_signed_in? %>
+      <div class="layout">
+        <div class="row">
+          <div class="col-md-2 d-none d-md-block vh-100 sidebar-left">
+            <%= render 'layouts/sidebar' %>
           </div>
-        </nav>
-
-
-    </header>
+          <div class="col-md-10 main-right">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <%= render 'layouts/header' %>
+      <%= yield %>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
-    <%= yield %>
   </body>
 </html>
