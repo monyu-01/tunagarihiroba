@@ -1,2 +1,8 @@
-<h1>Public::Members#unsubscribe</h1>
-<p>Find me in app/views/public/members/unsubscribe.html.erb</p>
+<h2>本当に退会しますか？</h2>
+<p>退会すると、これまでのすべての投稿や「つながり」の記録が完全に削除されます。一度退会すると、情報の復元はできません。
+内容をよくご確認のうえ、退会をご希望の場合は、下の「退会する」ボタンを押してください。
+</p>
+<%= link_to "退会しない", member_path(current_member) %>
+<%= button_to "退会する", registration_path(:member), method: :delete %>
+
+

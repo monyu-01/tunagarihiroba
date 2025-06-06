@@ -1,5 +1,5 @@
 <div class="registration-form-container">
-  <%= render "public/layouts/error_messages", resource: resource %>
+  <%= render "layouts/error_messages", resource: resource %>
   <h2 class="registration-heading">新規登録</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
