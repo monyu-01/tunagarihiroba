@@ -14,10 +14,11 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @post = Post.all
+    @posts = Post.page(params[:id])
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def followings_posts

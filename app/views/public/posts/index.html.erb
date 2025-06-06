@@ -1,0 +1,15 @@
+<h1>投稿を探す</h1>
+
+<% @posts.each do |post| %>
+  <div class="post-box">
+    <%= image_tag post.member.get_profile_image(100, 100), alt: "プロフィール画像" %>
+    <p><%= post.member.name %></p>
+
+    <%= image_tag post.get_image, alt: "投稿画像", size: "200x200" %>
+    <h4><%= post.title %></h4>
+    <p><%= post.body %></p>
+    <%= link_to "全文をみる", post_path(post) %>
+  </div>
+<% end %>
+
+<%= paginate @posts %>

@@ -4,8 +4,13 @@
     ご自身のページを開いてください
   </h2>
 
+  <% if flash[:alert] %>
+    <div class="mb-3">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+  
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
     <div class="mb-3">
       <%= f.label :email, "メールアドレス" %>
       <%= f.email_field :email, placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email", class: "form-control" %>
