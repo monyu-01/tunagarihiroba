@@ -5,7 +5,7 @@
     <%= image_tag post.member.get_profile_image(100, 100), alt: "プロフィール画像" %>
     <p><%= post.member.name %></p>
 
-    <%= image_tag post.get_image, alt: "投稿画像", size: "200x200" %>
+    <%= image_tag post.get_image(100,100), alt: "投稿画像" %>
     <h4><%= post.title %></h4>
     <p><%= post.body %></p>
     <%= link_to "全文をみる", post_path(post) %>

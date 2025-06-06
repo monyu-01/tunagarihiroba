@@ -1,0 +1,28 @@
+<div>
+  <%= image_tag @member.get_profile_image(100,100) %>
+  <h3><%= @member.name %></h3>
+  <p><%= @member.self_introduction %>
+  <%= link_to edit_member_registration_path do %>
+    <i class="fa-solid fa-user-gear"></i> 個人情報編集
+  <% end %>
+  <%= link_to edit_profile_path do %>
+    <i class="fa-solid fa-file-pen"></i> マイページ編集
+  <% end %>
+  <%= link_to "#" do %>
+    <i class="fa-solid fa-handshake-simple"></i> 応援している人一覧
+  <% end %>
+  <%= link_to "#" do %>
+    <i class="fa-solid fa-hand-holding-heart"></i> 応援されている人一覧
+  <% end %>
+</div>
+
+<% @posts.each do |post| %>
+<div>
+  <%= image_tag post.member.get_profile_image(100, 100), alt: "プロフィール画像" %>
+  <p><%= post.member.name %></p>
+  <%= link_to "投稿を編集する", post_path(@post) %>
+  <%= image_tag post.get_image(100, 100), alt: "投稿画像" %>
+  <h4><%= post.title %></h4>
+  <p><%= post.body %></p>
+</div>
+<% end %>

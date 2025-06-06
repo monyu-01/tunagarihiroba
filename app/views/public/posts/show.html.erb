@@ -1,8 +1,8 @@
 <div class="post-box">
-  <%= image_tag post.member.get_profile_image(100, 100), alt: "プロフィール画像" %> 
-  <p><%= link_to "#{post.member.name}さんのマイページを見る", member_path(post.member) %></p>  
-  <%= image_tag post.get_image, alt: "投稿画像", size: "200x200" %>
-  <h4><%= post.title %></h4>
-  <p><%= post.body %></p>
+  <%= image_tag @post.member.get_profile_image(100, 100), alt: "プロフィール画像" %> 
+  <p><%= link_to "#{@post.member.name}さんのマイページを見る", member_path(@post.member) %></p>  
+  <%= image_tag @post.get_image(100,100), alt: "投稿画像" %>
+  <h4><%= @post.title %></h4>
+  <p><%= @post.body %></p>
 </div>
 
