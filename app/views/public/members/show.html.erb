@@ -20,7 +20,7 @@
 <div>
   <%= image_tag post.member.get_profile_image(100, 100), alt: "プロフィール画像" %>
   <p><%= post.member.name %></p>
-  <%= link_to "投稿を編集する", post_path(@post) %>
+  <%= link_to "投稿を編集する", post_path(post) %>
   <%= image_tag post.get_image(100, 100), alt: "投稿画像" %>
   <h4><%= post.title %></h4>
   <p><%= post.body %></p>

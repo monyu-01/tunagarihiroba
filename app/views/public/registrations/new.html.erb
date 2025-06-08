@@ -1,34 +1,31 @@
-<div class="registration-form-container">
-  <h2 class="registration-heading">新規登録</h2>
-  <%= render "layouts/error_messages", resource: resource %>
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  
-      <div class="mb-3">
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email, placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email", class: "form-control" %>
-      </div>
-  
-      <div class="mb-3">
-        <%= f.label :password, "パスワードを入力" %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %>文字以上)</em>
-        <% end %>
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-      </div>
-  
-      <div class="mb-3">
-        <%= f.label :password_confirmation, "パスワード（確認用）" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-      </div>
-  
-      <p class="form-note small text-muted">
-        ※メールアドレスとパスワードは忘れないようにメモをしておくのをおすすめします。忘れてしまうと登録した内容が使えなくなってしまう可能性があります。
-      </p>
-  
-      <div class="mb-3">
-        <%= f.submit "登録ボタン", class: "btn btn-success w-100" %>
-      </div>
-    <% end %>
-
-</div><%# registration-form-container %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h2 class="text-center registration-heading">新規登録</h2>
+      <%= render "layouts/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="mb-4">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
+        </div>
+        <div class="mb-4">
+          <%= f.label :password, "パスワードを入力" %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %>文字以上)</em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-lg" %>
+        </div>
+        <div class="mb-4">
+          <%= f.label :password_confirmation, "パスワード（確認用）" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-lg" %>
+        </div>
+        <p class="text-muted small form-note">
+          ※メールアドレスとパスワードは忘れないようにメモをしておくのをおすすめします。忘れてしまうと登録した内容が使えなくなってしまう可能性があります。
+        </p>
+        <div class="mb-4">
+          <%= f.submit "登録ボタン", class: "btn btn-success btn-lg w-100" %>
+        </div>
+      <% end %>
+    </div><%# col-md-4 %>
+  </div><%# row justify-content-center %>
+</div><%# container mt-5 %>

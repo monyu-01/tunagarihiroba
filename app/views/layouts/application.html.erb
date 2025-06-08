@@ -15,7 +15,7 @@
     <% if member_signed_in? %>
       <div class="layout">
         <div class="row">
-          <div class="col-md-2 d-none d-md-block vh-100 sidebar-left">
+          <div class="col-md-2 d-none d-md-block vh-100 sidebar-left border-end">
             <%= render 'layouts/sidebar' %>
           </div>
           <div class="col-md-10 main-right">
@@ -25,6 +25,8 @@
       </div>
     <% else %>
       <%= render 'layouts/header' %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <%= yield %>
     <% end %>
   </body>

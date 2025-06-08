@@ -1,29 +1,23 @@
-<div class="session-form-container">
-  <h2 class="session-heading">
-    ご登録された方は、メールアドレスとパスワードを入力して<br />
-    ご自身のページを開いてください
-  </h2>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h3 class="text-center mb-4 session-heading">
+        ご登録された方はこちらから
+      </h3>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="mb-4">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
+        </div>
+        <div class="mb-4">
+          <%= f.label :password, "パスワードを入力" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-lg" %>
+        </div>
+        <div class="mb-4">
+          <%= f.submit "マイページに入る", class: "btn btn-success btn-lg w-100" %>
+        </div>
+      <% end %>
+    </div><%# col-md-4 %>
+  </div><%# row justify-content-center %>
+</div><%# container mt-5 %>
 
-  <% if flash[:alert] %>
-    <div class="mb-3">
-      <%= flash[:alert] %>
-    </div>
-  <% end %>
-  
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="mb-3">
-      <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email, placeholder: "xxxx@docomo.ne.jp", autofocus: true, autocomplete: "email", class: "form-control" %>
-    </div>
-
-    <div class="mb-3">
-      <%= f.label :password, "パスワードを入力" %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "マイページに入る", class: "btn btn-success w-100" %>
-    </div>
-  <% end %>
-
-</div>
