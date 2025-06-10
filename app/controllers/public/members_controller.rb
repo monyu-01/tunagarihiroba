@@ -1,8 +1,7 @@
 class Public::MembersController < ApplicationController
   def show
     @member = Member.find(params[:id])
-    @post = Post.find(params[:id])
-    @posts = @member.posts
+    @posts = @member.posts.page(params[:page])
   end
 
 
@@ -33,7 +32,6 @@ class Public::MembersController < ApplicationController
   private
 
   def profile_params
-    params.require(:member).permit(:name, :self_introduction)
+    params.require(:member).permit(:name, :self_introduction, :profile_image)
   end
-
 end

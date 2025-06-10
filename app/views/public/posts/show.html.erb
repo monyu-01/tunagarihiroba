@@ -1,7 +1,15 @@
-<div class="post-box">
-  <%= image_tag @post.member.get_profile_image(100, 100), alt: "プロフィール画像" %> 
-  <p><%= link_to "#{@post.member.name}さんのマイページを見る", member_path(@post.member) %></p>  
-  <%= image_tag @post.get_image(100,100), alt: "投稿画像" %>
-  <h4><%= @post.title %></h4>
-  <p><%= @post.body %></p>
+<div class="card-list-container py-5">
+  <div class="card w-50 mx-auto mt-4">
+    <div class="card-header bg-white d-flex">
+      <%= link_to member_path(@post.member), class: "text-decoration-none link-dark d-flex align-items-center" do %> 
+         <%= image_tag @post.member.get_profile_image(50, 50), alt: "プロフィール画像", class: "rounded-circle me-3" %> 
+         <span><%= "#{@post.member.name}さんのマイページを見る" %></span>
+      <% end %>
+    </div>
+    <%= image_tag @post.get_image(600,500), alt: "投稿画像", class: "card-img-top", style: "max-height: 500px; object-fit: cover;" %>
+    <div class="card-body">
+      <h4 class="card-title"><%= @post.title %></h4>
+      <p class="card-text"><%= @post.body %></p>
+    </div>
+  </div>
 </div>

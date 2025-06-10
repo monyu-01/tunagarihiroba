@@ -1,28 +1,50 @@
-<div>
-  <%= image_tag @member.get_profile_image(100,100) %>
-  <h3><%= @member.name %></h3>
-  <p><%= @member.self_introduction %>
-  <%= link_to edit_member_registration_path do %>
-    <i class="fa-solid fa-user-gear"></i> 個人情報編集
-  <% end %>
-  <%= link_to edit_profile_path do %>
-    <i class="fa-solid fa-file-pen"></i> マイページ編集
-  <% end %>
-  <%= link_to "#" do %>
-    <i class="fa-solid fa-handshake-simple"></i> 応援している人一覧
-  <% end %>
-  <%= link_to "#" do %>
-    <i class="fa-solid fa-hand-holding-heart"></i> 応援されている人一覧
+<nav class="navbar border-bottom mt-4">
+  <div class="w-75 container">
+    <div class="row align-items-center">
+      <div class="col-md-2">
+        <%= image_tag @member.get_profile_image(100,100) %>
+      </div>
+      <div class="col-md-10">
+        <h3><%= @member.name %></h3>
+        <p><%= @member.self_introduction %></p>
+        <% if current_member == @member %> 
+          <%= link_to edit_member_registration_path, class: "text-dark me-4 d-inline-block" do %>
+            <span><i class="fa-solid fa-user-gear"></i> 個人情報編集</span>
+          <% end %>
+          <%= link_to edit_profile_path, class: "text-dark me-4 d-inline-block" do %>
+            <span><i class="fa-solid fa-file-pen"></i> マイページ編集</span>
+          <% end %>
+        <% end %>
+        <%= link_to "#", class: "text-dark me-4 d-inline-block" do %>
+          <span><i class="fa-solid fa-handshake-simple"></i> 応援している人一覧</span>
+        <% end %>
+        <%= link_to "#", class: "text-dark me-4 d-inline-block" do %>
+          <span><i class="fa-solid fa-hand-holding-heart"></i> 応援されている人一覧</span>
+        <% end %>
+      </div>
+    </div><%# row align-items-center %>
+  </div><%# w-75 container %>
+</nav><%# navbar border-bottom mt-4 %>
+
+<div class="card-list-container py-5">
+  <% @posts.each do |post| %>
+  <div class="card w-50 mx-auto mt-4">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+      <%= link_to member_path(post.member), class: "text-decoration-none link-dark d-flex align-items-center" do %>
+        <%= image_tag post.member.get_profile_image(50, 50), alt: "プロフィール画像", class: "rounded-circle me-3" %> 
+        <span><%= post.member.name %></span>
+      <% end %>
+      <% if current_member == post.member %> 
+        <%= link_to "投稿を編集する", edit_post_path(post), class: "btn btn-outline-secondary btn-sm" %>
+      <% end %> 
+    </div>
+    <%= image_tag post.get_image(600, 500), alt: "投稿画像", class: "card-img-top", style: "max-height: 500px; object-fit: cover;" %>
+    <div class="card-body">
+      <h4 class="card-title"><%= post.title %></h4>
+      <p class="card-text"><%= post.body %></p>
+    </div>
+  </div>
   <% end %>
 </div>
 
-<% @posts.each do |post| %>
-<div>
-  <%= image_tag post.member.get_profile_image(100, 100), alt: "プロフィール画像" %>
-  <p><%= post.member.name %></p>
-  <%= link_to "投稿を編集する", post_path(post) %>
-  <%= image_tag post.get_image(100, 100), alt: "投稿画像" %>
-  <h4><%= post.title %></h4>
-  <p><%= post.body %></p>
-</div>
-<% end %>
+<%= paginate @posts %>
