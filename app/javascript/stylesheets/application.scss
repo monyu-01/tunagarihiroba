@@ -1,1 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
+
+.pagination .page-link {
+    color: black;
+  }
+  
+.pagination .page-item.active .page-link {
+    background-color:#2B8666;
+    color: black;
+    border-color: #2B8666;
+  }
