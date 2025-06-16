@@ -1,21 +1,24 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h3 class="text-center mb-4 session-heading">
+        管理者ログイン
+      </h3>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="mb-4">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
+        </div>
+        <div class="mb-4">
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-lg" %>
+        </div>
+        <div class="mb-4">
+           <%= f.submit "ログイン", class: "btn btn-success btn-lg w-100" %>
+        </div>
+      <% end %>
+    </div><%# col-md-4 %>
+  </div><%# row justify-content-center %>
+</div><%# container mt-5 %>
 <%= render "admin/shared/links" %>
+
