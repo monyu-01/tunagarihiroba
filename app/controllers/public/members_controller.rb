@@ -1,4 +1,6 @@
 class Public::MembersController < ApplicationController
+  before_action :authenticate_member!
+
   def show
     @member = Member.find(params[:id])
     @posts = @member.posts.page(params[:page])

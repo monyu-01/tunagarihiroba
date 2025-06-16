@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :authenticate_member!
 
   def new
     @post = Post.new
