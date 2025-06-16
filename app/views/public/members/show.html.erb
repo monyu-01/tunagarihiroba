@@ -41,6 +41,7 @@
     <%= image_tag post.get_image(600, 500), alt: "投稿画像", class: "card-img-top", style: "max-height: 500px; object-fit: cover;" %>
     <div class="card-body">
       <h4 class="card-title"><%= post.title %></h4>
+      <p class="card-text">投稿の内容:<%= post.genre.present? ? post.genre.name : "未選択" %></p>
       <p class="card-text"><%= post.body %></p>
     </div>
   </div>

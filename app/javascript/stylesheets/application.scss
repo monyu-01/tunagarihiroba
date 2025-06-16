@@ -2,10 +2,14 @@
 
 .pagination .page-link {
     color: black;
-  }
+}
   
 .pagination .page-item.active .page-link {
     background-color:#2B8666;
     color: black;
     border-color: #2B8666;
-  }
+ }
+ 
+input[type="radio"] {
+    accent-color: #198754;
+}

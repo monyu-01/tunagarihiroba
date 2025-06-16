@@ -18,6 +18,15 @@
           <%= f.text_field :title, placeholder:"タイトル名", class: "form-control form-control-lg" %>
           <h4 class="mb-3 mt-4">投稿内容</h4>
           <%= f.text_area :body, rows: 10, placeholder:"投稿には、年代や病気の分類などを記載いただくと、同じ境遇の方にとってより参考になります。", class: "form-control form-control-lg" %><br/>
+          <h4 class="mb-3 mt-4">内容の種類(任意)</h4>
+          <div class="d-flex flex-wrap gap-3 mb-4 genre-options">
+            <% Genre.all.each do |genre| %>
+              <label class="genre-check">
+                <%= radio_button_tag 'post[genre_id]', genre.id, @post.genre_id == genre.id %>
+                <span><%= genre.name %></span>
+              </label>
+            <% end %>
+          </div>
           <%= f.submit "投稿", class: "btn btn-success d-grid gap-2 col-2 mx-auto btn-lg" %>
         <% end %>
       </div>

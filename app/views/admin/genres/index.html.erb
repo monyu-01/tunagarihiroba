@@ -1,0 +1,41 @@
+<div class="container genre-form-wrapper">
+  <%= render 'layouts/form_error_messages', object: @genre %>
+  <%= form_with model: @genre, url: admin_genres_path do |f| %>
+    <div class="d-flex justify-content-center align-items-center gap-3 mb-4">
+      <div>
+        <%= f.label :name, "ジャンル名", class: "form-label fs-4 mb-0" %>
+      </div>
+      <div class="w-25">
+        <%= f.text_field :name, placeholder: "ジャンル名", class: "form-control form-control-lg w-100" %>   
+      </div>
+      <div>
+        <%= f.submit "新規登録", class: "btn btn-success btn-lg" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-5">
+  <table class="table w-25 mx-auto align-middle ext-nowrap">
+    <thead class="table-success">
+      <tr>
+        <th class="fw-normal">ジャンル名</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @genres.each do |genre| %>
+        <tr>
+          <td><%= genre.name %></td>
+          <td>
+            <%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-outline-success" %>
+          </td>
+          <td>
+            <%= link_to "削除する", admin_genre_path(genre), class: "btn btn-outline-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
