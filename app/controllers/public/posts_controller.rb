@@ -4,6 +4,7 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @genres = Genre.all
   end
 
   def create
@@ -12,6 +13,7 @@ class Public::PostsController < ApplicationController
     if @post.save
       redirect_to member_path(current_member)
     else
+      @genres = Genre.all
       render :new
     end
   end
@@ -29,6 +31,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @genres = Genre.all
   end
 
   def update
@@ -36,6 +39,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to member_path(current_member)
     else
+      @genres = Genre.all
       render :edit
     end
   end
@@ -52,7 +56,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :image, :body)
+    params.require(:post).permit(:title, :image, :body, :genre_id)
   end
 
   def is_matching_login_user

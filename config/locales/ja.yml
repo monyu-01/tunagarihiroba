@@ -10,6 +10,8 @@ ja:
      post:
        title: タイトル
        body: 本文
+     genre:
+       name: ジャンル名
  views:
     pagination:
       first: "最初"
