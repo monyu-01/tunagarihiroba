@@ -3,7 +3,7 @@
     <div class="card-header bg-white d-flex">
       <%= link_to member_path(@post.member), class: "text-decoration-none link-dark d-flex align-items-center" do %> 
          <%= image_tag @post.member.get_profile_image(50, 50), alt: "プロフィール画像", class: "rounded-circle me-3" %> 
-         <span><%= "#{@post.member.name}さんのマイページを見る" %></span>
+         <span><%= @post.member.name %></span>
       <% end %>
     </div>
     <%= image_tag @post.get_image(600,500), alt: "投稿画像", class: "card-img-top", style: "max-height: 500px; object-fit: cover;" %>
@@ -11,5 +11,25 @@
       <h4 class="card-title"><%= @post.title %></h4>
       <p class="card-text"><%= @post.body %></p>
     </div>
-  </div>
-</div>
+    <div>
+      <% @post.comments.each do |comment| %>
+        <%= link_to member_path(comment.member), class: "text-decoration-none link-dark d-flex align-items-center" do %>
+          <%= image_tag comment.member.get_profile_image(35,35), alt: "プロフィール画像", class: "rounded-circle me-3" %>
+          <span><%= comment.member.name %></span>
+        <% end %>
+        <%= comment.comment_body%>
+        <% if comment.member == current_member %>
+          <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn btn-outline-danger" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <%= form_with model: [@post, @comment] do |f| %>
+        <%= f.text_area :comment_body, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div><%# card-header bg-white d-flex %>
+  </div><%# card w-50 mx-auto mt-4 %>
+</div><%# card-list-container py-5 %>
+
+
