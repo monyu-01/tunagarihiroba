@@ -32,10 +32,12 @@ Rails.application.routes.draw do
         get :followings         
       end
     end
+
     resources :posts do
       collection do
         get :followings
       end
+      resources :comments, only: [:create, :destroy]
     end
   end
 end
