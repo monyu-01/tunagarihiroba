@@ -19,7 +19,19 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page])
+    @posts = Post.includes(:genre, :member)
+    @genres = Genre.all
+
+    if params[:keyword].present?
+      kw = "%#{params[:keyword]}%"
+      @posts = @posts.where("posts.title LIKE :kw OR posts.body LIKE:kw OR members.name LIKE :kw", kw: kw).joins(:member)
+    end
+
+    if params[:genre_ids].present?
+      @posts = @posts.where(genre_id: params[:genre_ids])
+    end
+
+    @posts = @posts.page(params[:page])
   end
 
   def show
