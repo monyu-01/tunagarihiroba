@@ -1,0 +1,42 @@
+<div class="w-50 mx-auto">
+  <div class="container bg-light rounded-3 py-5 px-4 align-items-center justify-content-between">
+    <div class="search-form-area">
+      <%= form_with url: posts_path, method: :get do |f| %>
+        <div class="d-flex justify-content-center align-items-center gap-3 mb-4">
+          <div>
+            <%= f.label :keyword, "キーワード" %>
+          </div>
+          <div class="w-50">
+            <%= f.text_field :keyword, value: params[:keyword], placeholder: "気になる言葉を入力してみよう", class: "form-control" %>
+          </div>
+          <div>
+            <%= f.submit "検索" , class: "btn btn-success" %> 
+          </div> 
+        </div>
+        <div>
+          <div class="container mb-2">
+            <h4>カテゴリー</h4>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <% @genres.each do |genre| %>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <%= check_box_tag 'genre_ids[]', genre.id, params[:genre_ids]&.include?(genre.id.to_s), class: "form-check-input" %>
+                    <%= genre.name %>
+                  </label>
+                </div>
+              <% end %>
+            </div>
+            <div>
+              <h4>検索のヒント</h4>
+              <p>
+                気になるキーワード（糖尿病、認知症、健康、散歩、30代、70代、名前など）を入力して検索してみましょう。興味のある投稿や、同じ境遇の方とつながりやすくなります。※カテゴリーの選択は任意です。必要に応じて選択し、「検索」ボタンを押してください。
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div><%# search-form-area %>
+  </div><%# container bg-light rounded-3 py-5 px-4 align-items-center justify-content-between %>
+</div><%# w-50 mx-auto %>
+
+
