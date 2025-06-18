@@ -1,2 +1,9 @@
-<h1>Public::Members#saved_posts</h1>
-<p>Find me in app/views/public/members/saved_posts.html.erb</p>
+<nav class="navbar border-bottom mt-4">
+  <div class="container w-50">
+    <div class="navbar-header mb-4">
+      <h2>保存した投稿一覧</h2>
+    </div>
+  </div>
+</nav> 
+
+<%= render 'public/posts/post_list', posts: @saved_posts %>

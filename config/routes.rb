@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         get :followings
       end
       resources :comments, only: [:create, :destroy]
+      resource :saved_post, only: [:create, :destroy]
     end
   end
 end
