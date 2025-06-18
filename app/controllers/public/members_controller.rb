@@ -23,6 +23,7 @@ class Public::MembersController < ApplicationController
   end
 
   def saved_posts
+    @saved_posts = current_member.saved_posts_posts.page(params[:page])
   end
 
   def followers

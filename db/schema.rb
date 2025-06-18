@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_06_17_072923) do
+ActiveRecord::Schema.define(version: 2025_06_18_012623) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -92,9 +92,20 @@ ActiveRecord::Schema.define(version: 2025_06_17_072923) do
     t.index ["member_id"], name: "index_posts_on_member_id"
   end
 
+  create_table "saved_posts", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_saved_posts_on_member_id"
+    t.index ["post_id"], name: "index_saved_posts_on_post_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "members"
   add_foreign_key "comments", "posts"
   add_foreign_key "posts", "members"
+  add_foreign_key "saved_posts", "members"
+  add_foreign_key "saved_posts", "posts"
 end

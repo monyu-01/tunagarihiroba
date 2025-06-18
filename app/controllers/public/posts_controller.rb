@@ -1,10 +1,11 @@
 class Public::PostsController < ApplicationController
-  before_action :is_matching_login_user, only: [:edit, :update]
   before_action :authenticate_member!
+  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :is_matching_login_user]
+  before_action :set_genres, only: [:new, :edit, :create, :update, :show]
 
   def new
     @post = Post.new
-    @genres = Genre.all
   end
 
   def create
@@ -13,7 +14,6 @@ class Public::PostsController < ApplicationController
     if @post.save
       redirect_to member_path(current_member)
     else
-      @genres = Genre.all
       render :new
     end
   end
@@ -35,7 +35,6 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @comment = Comment.new
   end
 
@@ -43,22 +42,17 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
-    @genres = Genre.all
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to member_path(current_member)
     else
-      @genres = Genre.all
       render :edit
     end
   end
 
   def destroy
-    @post = Post.find(params[:id])
     if @post.destroy
       redirect_to member_path(current_member)
     else
@@ -68,14 +62,21 @@ class Public::PostsController < ApplicationController
 
   private
 
-  def post_params
-    params.require(:post).permit(:title, :image, :body, :genre_id)
-  end
-
   def is_matching_login_user
-    @post = Post.find(params[:id])
     unless @post.member == current_member
       redirect_to posts_path
     end
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def set_genres
+    @genres = Genre.all
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :image, :body, :genre_id)
   end
 end

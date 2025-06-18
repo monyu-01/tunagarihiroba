@@ -7,7 +7,8 @@ class Member < ApplicationRecord
   has_one_attached :profile_image, dependent: :destroy  
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-
+  has_many :saved_posts, dependent: :destroy
+  has_many :saved_posts_posts, through: :saved_posts, source: :post
   
   validates :name, presence: true, on: :update_profile
 
