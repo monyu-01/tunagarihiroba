@@ -1,0 +1,13 @@
+<nav class="navbar border-bottom mt-4">
+  <div class="container w-50">
+    <div class="navbar-header mb-4">
+      <h2>応援している人の投稿一覧</h2>
+    </div>
+  </div>
+</nav> 
+
+<%= render 'public/posts/post_list', posts: @posts %>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @posts, theme: 'bootstrap-5' %>
+</div>

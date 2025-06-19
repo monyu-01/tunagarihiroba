@@ -1,29 +1,40 @@
 <nav class="navbar border-bottom mt-4">
-  <div class="w-75 container">
-    <div class="row align-items-center">
+  <div class="w-50 container">
+    <div class="row align-items-center mb-4">
       <div class="col-md-2">
-        <%= image_tag @member.get_profile_image(100,100) %>
+        <%= image_tag @member.get_profile_image(100,100), class: "rounded-circle me-3" %>
       </div>
       <div class="col-md-10">
         <h3><%= @member.name %></h3>
         <p><%= @member.self_introduction %></p>
         <% if current_member == @member %> 
-          <%= link_to edit_member_registration_path, class: "text-dark me-4 d-inline-block" do %>
+          <%= link_to edit_member_registration_path, class: "text-dark me-4 text-decoration-none" do %>
             <span><i class="fa-solid fa-user-gear"></i> 個人情報編集</span>
           <% end %>
-          <%= link_to edit_profile_path, class: "text-dark me-4 d-inline-block" do %>
+          <%= link_to edit_profile_path, class: "text-dark me-4 text-decoration-none" do %>
             <span><i class="fa-solid fa-file-pen"></i> マイページ編集</span>
           <% end %>
         <% end %>
-        <%= link_to "#", class: "text-dark me-4 d-inline-block" do %>
+        <%= link_to followings_member_path(current_member), class: "text-dark me-4 text-decoration-none" do %>
           <span><i class="fa-solid fa-handshake-simple"></i> 応援している人一覧</span>
         <% end %>
-        <%= link_to "#", class: "text-dark me-4 d-inline-block" do %>
+        <%= link_to followers_member_path(current_member), class: "text-dark me-4 text-decoration-none" do %>
           <span><i class="fa-solid fa-hand-holding-heart"></i> 応援されている人一覧</span>
         <% end %>
+        <% if current_member != @member %>
+          <% if current_member.following?(@member) %>
+            <%= link_to member_relationship_path(@member.id), method: :delete, class: "text-dark me-4 text-decoration-none" do %>
+              <span><i class="fa-solid fa-thumbs-up"></i>応援をやめる</span>
+            <% end %>
+          <% else %>
+            <%= link_to member_relationship_path(@member.id), method: :post, class: "text-dark me-4 text-decoration-none" do %>
+              <span><i class="fa-regular fa-thumbs-up"></i>応援をする</span>
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
-    </div><%# row align-items-center %>
-  </div><%# w-75 container %>
+    </div><%# row align-items-center mb-4 %>
+  </div><%# w-50 container %>
 </nav><%# navbar border-bottom mt-4 %>
 
 <div class="card-list-container py-5">
