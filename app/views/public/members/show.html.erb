@@ -6,6 +6,15 @@
       </div>
       <div class="col-md-10">
         <h3><%= @member.name %></h3>
+        <div>
+          <% if current_member != @member %>
+            <% if current_member.following?(@member) %>
+              <%= link_to '応援をやめる', member_relationship_path(@member.id), method: :delete, class: "btn-sm btn-danger" %>
+            <% else %>
+              <%= link_to '応援する', member_relationship_path(@member.id), method: :post, class: "btn-sm btn-success" %>
+            <% end %>
+          <% end %>
+        </div>
         <p><%= @member.self_introduction %></p>
         <% if current_member == @member %> 
           <%= link_to edit_member_registration_path, class: "text-dark me-4 d-inline-block" do %>
@@ -15,10 +24,10 @@
             <span><i class="fa-solid fa-file-pen"></i> マイページ編集</span>
           <% end %>
         <% end %>
-        <%= link_to "#", class: "text-dark me-4 d-inline-block" do %>
+        <%= link_to followings_member_path(current_member), class: "text-dark me-4 d-inline-block" do %>
           <span><i class="fa-solid fa-handshake-simple"></i> 応援している人一覧</span>
         <% end %>
-        <%= link_to "#", class: "text-dark me-4 d-inline-block" do %>
+        <%= link_to followers_member_path(current_member), class: "text-dark me-4 d-inline-block" do %>
           <span><i class="fa-solid fa-hand-holding-heart"></i> 応援されている人一覧</span>
         <% end %>
       </div>

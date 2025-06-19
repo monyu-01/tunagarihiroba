@@ -1,2 +1,28 @@
-<h1>Public::Members#followings</h1>
-<p>Find me in app/views/public/members/followings.html.erb</p>
+<nav class="navbar border-bottom mt-4">
+  <div class="container w-50">
+    <div class="navbar-header mb-4">
+      <h2>応援している人の一覧</h2>
+    </div>
+  </div>
+</nav>  
+
+<div class="container w-50 followings-page mt-2">
+  <div class="list-group">
+    <% @followings.each do |member| %>
+      <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+        <div class="d-flex align-items-center">
+          <%= link_to member_path(member), class: "text-decoration-none link-dark d-flex align-items-center" do %>  
+            <%= image_tag member.get_profile_image(40,40), class: "rounded-circle me-2" %>
+            <span><%= member.name %></span>
+          <% end %> 
+        </div>
+        <%= link_to "削除", member_relationship_path(member), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @followings, theme: 'bootstrap-5' %>
+  </div>
+
+</div>

@@ -26,10 +26,14 @@ class Public::MembersController < ApplicationController
     @saved_posts = current_member.saved_posts_posts.page(params[:page])
   end
 
-  def followers
+  def followings
+    member = Member.find(params[:id])
+    @followings = member.followings.page(params[:page]).per(15)
   end
 
-  def followings
+  def followers
+    mamber = Member.find(params[:id])
+    @followers = mamber.followers.page(params[:page]).per(15)
   end
 
   private

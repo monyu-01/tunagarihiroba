@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         get :followers          
         get :followings         
       end
+      resource :relationship, only: [:create, :destroy]
     end
 
     resources :posts do
