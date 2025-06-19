@@ -39,7 +39,7 @@ class Public::PostsController < ApplicationController
   end
 
   def followings
-    following_ids = crrent_member.following_ids
+    following_ids = current_member.following_ids
     @posts = Post.where(member_id: following_ids).includes(:member, :genre).order(created_at: :desc).page(params[:page])
   end
 
