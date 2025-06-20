@@ -1,0 +1,18 @@
+<nav class="navbar border-bottom mt-4">
+  <div class="containe w-50">
+    <div class="navbar-header mb-4">
+      <h2>通知一覧</h2>
+    </div>
+  </div>
+</nav>  
+
+<% notifications = @notifications.where.not(visitor_id: current_member.id) %>
+<% if notifications.exists? %>
+  <%= render partial: 'public/notifications/notifications', collection: notifications, as: :notification %>
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @notifications, theme: 'bootstrap-5' %>
+  </div>
+<% else %>
+  <p>通知はありません</p>
+<% end %>
+
