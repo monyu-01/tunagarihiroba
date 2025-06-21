@@ -13,6 +13,9 @@ class Member < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followings, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships,source: :follower
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
   
   validates :name, presence: true, on: :update_profile
 
@@ -34,5 +37,17 @@ class Member < ApplicationRecord
 
   def following?(member)
     followings.include?(member)
+  end
+
+  def create_notification_follow!(current_member)
+    # 既にフォロー通知が存在しない場合のみ、新規通知を作成
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_member.id, id, 'follow'])
+    if temp.blank?
+      notification = current_member.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
 end

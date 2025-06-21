@@ -3,6 +3,7 @@ class Public::RelationshipsController < ApplicationController
   def create
     member =  Member.find(params[:member_id])
     current_member.follow(member)
+    member.create_notification_follow!(current_member)
     redirect_to member_path(member)
   end
 
