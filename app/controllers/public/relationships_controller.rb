@@ -1,5 +1,7 @@
 class Public::RelationshipsController < ApplicationController
   before_action :authenticate_member!
+  before_action :ensure_guest_member
+
   def create
     member =  Member.find(params[:member_id])
     current_member.follow(member)

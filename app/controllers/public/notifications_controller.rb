@@ -1,4 +1,6 @@
 class Public::NotificationsController < ApplicationController
+  before_action :ensure_guest_member
+
   def index
     @notifications = current_member.passive_notifications.includes(:visitor, :post, :comment).page(params[:page]).per(15)
     @notifications.where(checked: false).each do |notification|

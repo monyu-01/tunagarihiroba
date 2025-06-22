@@ -1,10 +1,18 @@
-<nav class="navbar border-bottom mt-4">
-  <div class="container w-50">
-    <div class="navbar-header mb-4">
-      <h2>投稿を探す</h2>
-    </div>
+<% if current_member&.guest? %>
+  <div class="alert alert-warning text-center container w-50 mb-0 py-2">
+    <p class="fw-bold mb-1">ゲストモードでご利用中です。</p>
+    <p class="mb-0 small lh-sm">※登録すると、プロフィール・コメント<br>
+    保存機能などをご利用いただけます。</p>
   </div>
-</nav> 
+<% elsif current_member %>
+  <nav class="navbar border-bottom mt-4">
+    <div class="container w-50">
+      <div class="navbar-header mb-4">
+        <h2>投稿を探す</h2>
+      </div>
+    </div>
+  </nav> 
+<% end %>
 
 <div class="card-list-container py-5">
   <%= render 'public/posts/search_form' %>

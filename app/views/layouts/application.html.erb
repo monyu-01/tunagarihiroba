@@ -15,7 +15,12 @@
 
     <p>lorem ipsum</p>
     
-    <% if member_signed_in? %>
+    <% if member_signed_in? && current_member.guest? %>
+      <%= render 'layouts/guest_header' %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    <% elsif member_signed_in? %>
       <div class="layout">
         <div class="row">
           <div class="col-md-2 d-none d-md-block vh-100 sidebar-left border-end">

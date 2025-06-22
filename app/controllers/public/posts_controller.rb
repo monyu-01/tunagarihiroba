@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :is_matching_login_user]
   before_action :set_genres, only: [:new, :edit, :create, :update, :show]
+  before_action :ensure_guest_member, except: [:index, :show]
 
   def new
     @post = Post.new
