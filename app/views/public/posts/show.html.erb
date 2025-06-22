@@ -13,7 +13,9 @@
         <%= render 'public/shared/member_summary', member: @post.member %>
       </div>
       <% unless current_member&.guest? %>
-        <div><%= render 'public/posts/save_button', post: @post %></div>
+        <div id="save-button-<%= @post.id %>">
+          <%= render 'public/posts/save_button', post: @post %>
+        </div>
       <% end %>
     </div>
     <%= image_tag @post.get_image(600,500), alt: "投稿画像", class: "card-img-top", style: "max-height: 500px; object-fit: cover;" %>
