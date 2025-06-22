@@ -1,0 +1,11 @@
+<% if current_member&.guest? %>
+  <div class="text-decoration-none link-dark d-flex align-items-center">
+    <%= image_tag member.get_profile_image(50, 50), alt: "プロフィール画像", class: "rounded-circle me-3" %>
+    <span><%= member.name %></span>
+  </div>
+<% else %>
+  <%= link_to member_path(member), class: "text-decoration-none link-dark d-flex align-items-center" do %>
+    <%= image_tag member.get_profile_image(50, 50), alt: "プロフィール画像", class: "rounded-circle me-3" %>
+    <span><%= member.name %></span>
+  <% end %>
+<% end %>

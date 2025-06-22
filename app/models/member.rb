@@ -19,6 +19,19 @@ class Member < ApplicationRecord
   
   validates :name, presence: true, on: :update_profile
 
+  GUEST_MEMBER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_MEMBER_EMAIL) do |member|
+      member.password = SecureRandom.urlsafe_base64
+      member.name = "guestuser"
+    end
+  end
+
+  def guest?
+    email == GUEST_MEMBER_EMAIL
+  end
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/default_profile_icon_flower.png')
