@@ -4,20 +4,18 @@ class Public::CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = current_member.comments.new(comment_params.merge(post_id: @post.id))
+    @post.create_notification_comment!(current_member, @comment.id)
     if @comment.save
-      @post.create_notification_comment!(current_member, @comment.id)
-      redirect_to post_path(@post) 
     else
-      flash.now[:alert] = "コメントの投稿に失敗しました"
-      render 'public/posts/show'
+      @comment_body = @comment
+      render :error
     end
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    post = comment.post
-    comment.destroy
-    redirect_to post_path(post)
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
+    @comment.destroy
   end
   
   private

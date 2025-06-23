@@ -12,6 +12,8 @@ ja:
        body: 本文
      genre:
        name: ジャンル名
+     comment:
+       comment_body: コメントの内容
  views:
     pagination:
       first: "最初"
