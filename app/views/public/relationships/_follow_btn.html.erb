@@ -1,0 +1,11 @@
+<% if current_member != @member %>
+  <% if current_member.following?(@member) %>
+    <%= link_to member_relationship_path(@member.id), method: :delete, remote: true, class: "text-dark me-4 text-decoration-none" do %>
+      <span><i class="fa-solid fa-thumbs-up"></i>応援をやめる</span> 
+    <% end %>
+  <% else %>
+    <%= link_to member_relationship_path(@member.id), method: :post, remote: true, class: "text-dark me-4 text-decoration-none" do %>
+      <span><i class="fa-regular fa-thumbs-up"></i>応援をする</span>
+    <% end %>
+  <% end %>
+<% end %>
