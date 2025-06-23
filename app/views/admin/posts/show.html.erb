@@ -1,0 +1,61 @@
+<section class="inner">
+  <%= image_tag @post.member.get_profile_image(50, 50), alt: "プロフィール画像", class: "rounded-circle me-3" %>
+  <h2 class="section-ttl"><%= @post.member.name %>さんの投稿詳細</h2>
+	<table class="customer_info">
+	  <thead>
+	    <th></th>
+		<th></th>
+		<th></th>
+	  </thead>
+	  <tbody>
+        <tr>
+	      <td>メールアドレス</td>
+          <td colspan="2"><%= @post.member.email %></td>
+	    </tr>
+        <tr>
+	      <td>投稿日</td>
+    	  <td colspan="2"><%= l(@post.created_at, format: :long) %></td>
+	    </tr>
+	    <tr>
+	      <td>タイトル</td>
+    	  <td colspan="2"><%= @post.title %></td>
+	    </tr>
+        <tr>
+          <td>投稿画像</td>
+          <td>
+            <% if @post.image.attached? %>
+              <%= image_tag @post.get_image(300,200), class: "img-fluid mt-3" %>
+            <% end %>
+          </td>
+        </tr>
+	    <tr>
+    	  <td>ジャンル</td>
+    	  <td colspan="2"><%= @post.genre&.name || "未分類" %></td>
+	    </tr>
+        <tr>
+    	  <td>投稿内容</td>
+    	  <td colspan="2"><%= @post.body %></td>
+	    </tr>
+	    <tr>
+    	  <td>コメント一覧</td>
+    	  <td colspan="2">
+            <% @post.comments.each do |comment| %>
+              <div class="border p-2 mb-2">
+                <p><%= comment.comment_body %></p>
+                <small>投稿者：<%= comment.member.name %>（<%= l(comment.created_at, format: :long) %>）</small>
+                <%= link_to '削除', admin_comment_path(comment), method: :delete, data: { confirm: "このメンバーのコメントを削除します。\n削除前に登録メールアドレスへ管理者から直接連絡してください。\n内容の控えを保存していますか？\n連絡済みであることをご確認の上、続行してください。" }, class: "btn btn-sm btn-danger ms-2" %>
+              </div>
+            <% end %>
+          </td>  
+	    </tr>
+        <tr>
+          <td colspan="2">
+            <%= button_to '投稿を削除する', admin_post_path(@post), method: :delete, data: { confirm: "このメンバーの投稿を削除します。\n削除前に登録メールアドレスへ管理者から直接連絡してください。\n連絡済みであることをご確認の上、続行してください。" }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+	  </tbody>
+    </table>
+</section>
+
+
+
