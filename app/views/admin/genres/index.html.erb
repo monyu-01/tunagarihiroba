@@ -1,5 +1,5 @@
 <div class="container genre-form-wrapper">
-  <%= render 'layouts/form_error_messages', object: @genre %>
+  <%= render 'shared/form_error_messages', object: @genre %>
   <%= form_with model: @genre, url: admin_genres_path do |f| %>
     <div class="d-flex justify-content-center align-items-center gap-3 mb-4">
       <div>
