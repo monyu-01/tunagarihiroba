@@ -16,7 +16,8 @@ class Member < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
-  
+  enum user_status: { available: 0, suspended: 1 }
+
   validates :name, presence: true, on: :update_profile
 
   GUEST_MEMBER_EMAIL = "guest@example.com"
