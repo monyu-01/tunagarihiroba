@@ -1,4 +1,4 @@
-<div class="container genre-form-wrapper">
+<div class="container mt-4 mb-4 genre-form-wrapper">
   <%= render 'shared/form_error_messages', object: @genre %>
   <%= form_with model: @genre, url: admin_genres_path do |f| %>
     <div class="d-flex justify-content-center align-items-center gap-3 mb-4">
@@ -16,7 +16,7 @@
 </div>
 
 <div class="mt-5">
-  <table class="table w-25 mx-auto align-middle ext-nowrap">
+  <table class="table table-bordered w-25 mx-auto align-middle ext-nowrap">
     <thead class="table-success">
       <tr>
         <th class="fw-normal">ジャンル名</th>
@@ -29,10 +29,10 @@
         <tr>
           <td><%= genre.name %></td>
           <td>
-            <%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-outline-success" %>
+            <%= link_to "編集", edit_admin_genre_path(genre), class: "btn btn-outline-success" %>
           </td>
           <td>
-            <%= link_to "削除する", admin_genre_path(genre), class: "btn btn-outline-danger" %>
+            <%= link_to "削除", admin_genre_path(genre), method: :delete, class: "btn btn-outline-danger" %>
           </td>
         </tr>
       <% end %>
