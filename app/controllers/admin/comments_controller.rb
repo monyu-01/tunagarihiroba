@@ -1,4 +1,6 @@
 class Admin::CommentsController < ApplicationController
+  before_action :restrict_to_admin!
+
   def destroy
     comment = Comment.find(params[:id])
     post = comment.post

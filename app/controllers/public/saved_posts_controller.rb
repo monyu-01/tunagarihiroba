@@ -1,5 +1,6 @@
 class Public::SavedPostsController < ApplicationController
-  before_action :ensure_guest_member
+  before_action :authenticate_member!
+  before_action :restrict_guest_member
   
   def create
     @post = Post.find(params[:post_id])

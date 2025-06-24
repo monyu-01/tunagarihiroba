@@ -1,4 +1,6 @@
 class Admin::MembersController < ApplicationController
+  before_action :restrict_to_admin!
+
   def index
     @members = Member.where.not(email: 'guest@example.com').order(created_at: :desc).page(params[:page]).per(15)
   end

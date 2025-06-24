@@ -1,6 +1,6 @@
 class Public::MembersController < ApplicationController
   before_action :authenticate_member!
-  before_action :ensure_guest_member
+  before_action :restrict_guest_member
 
 
   def show
