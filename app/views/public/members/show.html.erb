@@ -24,6 +24,9 @@
         <div id="relastionships-btn-<%= @member.id %>">  
           <%= render 'public/relationships/follow_btn', member: @member %>
         </div>
+        <div class="d-flex justify-content-end mt-2">
+          <%= render 'public/reports/report_btn', member: @member %>
+        </div>
       </div>
     </div><%# row align-items-center mb-4 %>
   </div><%# w-75 container %>

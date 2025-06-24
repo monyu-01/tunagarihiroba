@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :members, only: [:index, :show, :destroy]
     resources :posts, only: [:index, :show, :destroy]
     resources :comments, only: [:destroy]
+    resources :reports, only: [:index, :show, :update]
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
         get :followings         
       end
       resource :relationship, only: [:create, :destroy]
+      resources :reports, only: [:new, :create]
     end
 
     resources :notifications, only: :index
