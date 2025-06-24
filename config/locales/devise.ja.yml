@@ -114,7 +114,9 @@ ja:
       new:
         sign_in: ログイン
       signed_in: ようこそ、つながり広場へ！
+      admin_signed_in: 管理者としてログインしました。
       signed_out: ご利用ありがとうございました。またいつでもお越しください。
+      admin_signed_out: 管理画面からログアウトしました。
     shared:
       links:
         back: 戻る

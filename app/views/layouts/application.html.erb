@@ -12,13 +12,9 @@
   </head>
 
   <body>
-
-    <p>lorem ipsum</p>
-    
     <% if member_signed_in? && current_member.guest? %>
       <%= render 'layouts/guest_header' %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <%= render 'layouts/flash_messages' %>
       <%= yield %>
     <% elsif member_signed_in? %>
       <div class="layout">
@@ -31,10 +27,13 @@
           </div>
         </div>
       </div>
+    <% elsif admin_signed_in? %>
+      <%= render 'layouts/admin_header' %>
+      <%= render 'layouts/flash_messages' %>
+      <%= yield %>
     <% else %>
       <%= render 'layouts/header' %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <%= render 'layouts/flash_messages' %>
       <%= yield %>
     <% end %>
   </body>

@@ -1,48 +1,58 @@
-<section class="inner">
-  <h2 class="section-ttl"><%= @member.name %>さんのマイページ</h2>
-	<table class="customer_info">
-	  <thead>
-	    <th></th>
-		<th></th>
-		<th></th>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <td>登録ID</td>
-    	  <td colspan="2"><%= @member.id %></td>
-	    </tr>
-	    <tr>
-    	  <td>名前</td>
-    	  <td colspan="2"><%= @member.name %></td>
-	    </tr>
-        <tr>
-    	  <td>メールアドレス</td>
-    	  <td colspan="2"><%= @member.email %></td>
-	    </tr>
-        <tr>
-    	  <td>プロフィール画像</td>
-    	  <td colspan="2"><%= image_tag @member.get_profile_image(50,50), class: "rounded-circle me-3" %></td>
-	    </tr>
-	    <tr>
-    	  <td>プロフィール文</td>
-    	  <td colspan="2"><%= @member.self_introduction %></td>
-	    </tr>
-	    <tr>
-    	  <td>投稿一覧</td>
-    	  <td colspan="2">
+<div class="container w-75 mt-4 mb-5">
+  <h2 class="mb-4"><%= @member.name %>さんのマイページ</h2>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr class="table-success text-center">
+        <th class="w-25">項目名</th>
+        <th>内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>登録ID</th>
+        <td><%= @member.id %></td>
+      </tr>
+      <tr>
+        <th>名前</th>
+        <td><%= @member.name %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @member.email %></td>
+      </tr>
+      <tr>
+        <th>プロフィール画像</th>
+        <td>
+          <%= image_tag @member.get_profile_image(100, 100), class: "rounded-circle me-2" %>
+        </td>
+      </tr>
+      <tr>
+        <th>プロフィール文</th>
+        <td><%= @member.self_introduction.presence || "未登録" %></td>
+      </tr>
+      <tr>
+        <th>投稿一覧</th>
+        <td>
+          <% if @member.posts.any? %>
             <% @member.posts.each do |post| %>
               <div><%= link_to post.title, admin_post_path(post) %></div>
             <% end %>
-          </td>  
-	    </tr>
-        <tr>
-          <td colspan="2">
-            <%= button_to 'メンバーを削除する', admin_member_path(@member), method: :delete, data: { confirm: "このメンバーのアカウントを削除します。\n削除前に登録メールアドレスへ管理者から直接連絡してください。\n連絡済みであることをご確認の上、続行してください。" }, class: "btn btn-danger" %>
-          </td>
-        </tr>
-	  </tbody>
-    </table>
-</section>
-
-
-
+          <% else %>
+            <span class="text-muted">投稿はありません。</span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>アカウント削除</th>
+        <td class="text-center">
+          <%= button_to 'メンバーを削除する', admin_member_path(@member), method: :delete,
+            data: {
+              confirm: "このメンバーのアカウントを削除します。\n削除前に登録メールアドレスへ管理者から直接連絡してください。\n連絡済みであることをご確認の上、続行してください。"
+            },
+            class: "btn btn-danger" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

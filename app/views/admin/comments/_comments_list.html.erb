@@ -1,0 +1,19 @@
+<% if comments.any? %>
+  <% comments.each do |comment| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <p class="mb-1"><%= comment.comment_body %></p>
+        <small class="text-muted">
+          投稿者：<%= comment.member.name %>（<%= l(comment.created_at, format: "%Y/%m/%d %H:%M") %>）
+        </small>
+        <%= link_to '削除', admin_comment_path(comment), method: :delete,
+          data: {
+            confirm: "このメンバーのコメントを削除します。\n削除前に登録メールアドレスへ管理者から直接連絡してください。\n内容の控えを保存していますか？\n連絡済みであることをご確認の上、続行してください。"
+          },
+          class: "btn btn-sm btn-outline-danger float-end" %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p class="text-muted">コメントはありません。</p>
+<% end %>
