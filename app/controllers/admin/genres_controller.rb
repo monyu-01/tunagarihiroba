@@ -1,4 +1,5 @@
 class Admin::GenresController < ApplicationController
+  before_action :restrict_to_admin!
   before_action :ensure_genre, only: [:edit, :update, :destroy]
   
   def index
