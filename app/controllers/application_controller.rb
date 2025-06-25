@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
       redirect_to posts_path, notice: '申し訳ありません。ゲストモードではこの機能はご利用いただけません。'
     end
   end
+
+  def check_user_status
+    if current_member&.suspended?
+      sign_out current_member
+      redirect_to new_member_session_path, alert: "アカウントは停止されています。"
+    end
+  end
 end

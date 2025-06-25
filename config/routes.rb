@@ -2,14 +2,23 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
-    resources :members, only: [:index, :show, :destroy]
     resources :posts, only: [:index, :show, :destroy]
     resources :comments, only: [:destroy]
+    resources :reports, only: [:index, :show, :update]
+
+    resources :members, only: [:index, :show, :update] do
+      member do
+        patch :deactivate
+        patch :reactivate
+      end
+    end
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
+
+
 
   namespace :public do
     get 'sessions/new'
@@ -39,6 +48,7 @@ Rails.application.routes.draw do
         get :followings         
       end
       resource :relationship, only: [:create, :destroy]
+      resources :reports, only: [:new, :create]
     end
 
     resources :notifications, only: :index

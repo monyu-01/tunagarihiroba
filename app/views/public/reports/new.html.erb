@@ -1,0 +1,47 @@
+<nav class="navbar border-bottom mt-4">
+  <div class="container w-50">
+    <div class="navbar-header mb-4">
+      <h2>通報</h2>
+    </div>
+  </div>
+</nav> 
+
+<div class="container d-flex justify-content-center">
+  <div class="w-75 mt-5 px-3 px-md-4">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <%= render 'shared/form_error_messages', object: @report %>
+        <div class="post-new-container">
+          <p><strong>通報についてのご説明</strong></p>
+          <ul>
+            <li>こちらは、「不適切な内容」「誤情報」「誹謗中傷」「個人情報の要求」など、お困りの際にご利用いただくフォームです。</li>
+            <li>通報者が誰であるかが相手に伝わることはありませんので、ご安心ください。</li>
+            <li>通報内容は運営が確認し、必要に応じて対応を行います。</li>
+            <li>いたずらや虚偽の通報は、サービスの信頼性を損なうためご遠慮ください。</li>
+            <li>本サービスでは、皆様が安心してご利用していただけるよう、今後も改善と安全対策の強化に取り組んでまいります。</li>
+          </ul>
+
+          <p><strong>記入のポイント</strong></p>
+          <ol>
+            <li>対象となる内容を選んでください。<br>
+            （例：投稿内容、コメント内容、プロフィール文・画像、投稿画像など）</li>
+            <li>具体的な状況をできるだけ詳しくご記載ください。<br>
+            ・いつ頃、どのようなやりとりがあったか<br>
+            ・どの表現・画像が問題と感じたか、など</li>
+          </ol>
+
+          <%= form_with model:[@member, @report], class: "my-4" do |f| %>
+            <div class="form-group d-flex justify-content-center mb-4">
+              <%= f.text_area :reason, rows: '6', class: "form-control" %>
+            </div>
+            <div class="form-group d-flex justify-content-center">
+              <%= f.submit "通報する",data: {
+              confirm: "通報を送信しますか？この操作は取り消せません。"
+               }, class: "btn btn-danger" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

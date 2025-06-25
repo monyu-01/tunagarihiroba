@@ -13,7 +13,7 @@
       <% @posts.each do |post| %>
         <tr>
           <td><%= l(post.created_at, format: :long) %></td>
-          <td><%= post.member.name %></td>
+          <td><%= link_to post.member.name, admin_member_path(post.member) %></td>
           <td>
             <%= link_to post.title, admin_post_path(post), class: "text-primary" %>
           </td>

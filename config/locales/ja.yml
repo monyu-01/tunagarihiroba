@@ -14,6 +14,8 @@ ja:
        name: ジャンル名
      comment:
        comment_body: コメントの内容
+     report:
+       reason: 通報内容
  views:
     pagination:
       first: "最初"
@@ -21,3 +23,8 @@ ja:
       previous: "前へ"
       next: "次へ"
       truncate: "..."
+ enums:
+     member:
+       user_status:
+         available: "利用可能"
+         suspended: "利用停止中"      

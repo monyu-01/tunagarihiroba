@@ -1,6 +1,6 @@
 <div class="container w-75 mt-4 mb-5">
-  <h2 class="mb-4"><%= @member.name %>さんのマイページ</h2>
-
+  <h2 class="mb-4"><%= @member.name %>さんの登録情報</h2>
+  
   <table class="table table-bordered">
     <thead>
       <tr class="table-success text-center">
@@ -20,6 +20,10 @@
       <tr>
         <th>メールアドレス</th>
         <td><%= @member.email %></td>
+      </tr>
+      <tr>
+        <th>通報された回数</th>
+        <td><%= Report.where(reported_id: @member.id).count %></td>
       </tr>
       <tr>
         <th>プロフィール画像</th>
@@ -44,15 +48,18 @@
         </td>
       </tr>
       <tr>
-        <th>アカウント削除</th>
-        <td class="text-center">
-          <%= button_to 'メンバーを削除する', admin_member_path(@member), method: :delete,
-            data: {
-              confirm: "このメンバーのアカウントを削除します。\n削除前に登録メールアドレスへ管理者から直接連絡してください。\n連絡済みであることをご確認の上、続行してください。"
-            },
-            class: "btn btn-danger" %>
+        <th>現在のステータス</th>
+        <td>
+          <%= form_with model: @member, url: admin_member_path(@member), method: :patch do |f| %>
+            <div class="d-flex gap-3 align-items-center">
+              <%= f.select :user_status,
+                    Member.user_statuses.keys.map { |k| [I18n.t("enums.member.user_status.#{k}"), k] },
+                    {}, class: "form-select" %>
+              <%= f.submit "ステータスを更新", class: "btn btn-success" %>
+            </div>
+          <% end %>
         </td>
-      </tr>
+      </tr> 
     </tbody>
   </table>
 </div>

@@ -1,0 +1,7 @@
+<% if member != current_member %>
+  <% if current_member.reports_made.exists?(reported_id: member.id) %>
+    <%= button_tag "通報済み", class: "btn btn-outline-secondary btn-sm", disabled: true %>
+  <% else %>
+    <%= link_to "通報する",  new_member_report_path(member), class: "btn btn-outline-danger btn-sm" %>
+  <% end %>
+<% end %>
