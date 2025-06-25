@@ -4,6 +4,16 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def active_for_authentication?
+    super && available?
+  end
+  
+  def inactive_message
+    suspended? ? :suspended : super
+  end
+
+  enum user_status: { available: 0, suspended: 1 }
+
   has_one_attached :profile_image, dependent: :destroy  
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -18,9 +28,15 @@ class Member < ApplicationRecord
   has_many :reports_made, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
   has_many :reports_received, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
 
-  enum user_status: { available: 0, suspended: 1 }
-
   validates :name, presence: true, on: :update_profile
+
+  def report_count
+    Report.where(reported_id: id).count
+  end
+
+  def exceeded_report_limit?
+    report_count >= 3
+  end
 
   GUEST_MEMBER_EMAIL = "guest@example.com"
 

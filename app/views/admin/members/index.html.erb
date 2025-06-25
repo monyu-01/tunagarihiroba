@@ -5,6 +5,7 @@
     <thead>
       <tr class="table-success">
         <th>登録ID</th>
+        <th>利用状況</th>
         <th>氏名</th>
         <th>メールアドレス</th>
       </tr>
@@ -13,6 +14,13 @@
       <% @members.each do |member| %>
         <tr>
           <td><%= member.id %></td>
+          <td>
+            <% if member.user_status == "available" %>
+              <span class="badge bg-success">利用可能</span>
+            <% else %>
+              <span class="badge bg-danger">利用停止中</span>
+            <% end %>
+          </td>
           <td>
             <%= link_to member.name, admin_member_path(member), class: "text-primary" %>
           </td>
