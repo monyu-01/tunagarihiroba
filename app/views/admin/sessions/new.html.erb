@@ -6,11 +6,11 @@
       </h3>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="mb-4">
-          <%= f.label :email %>
+          <%= f.label :email, "メールアドレス"  %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
         </div>
         <div class="mb-4">
-          <%= f.label :password %>
+          <%= f.label :password, "パスワードを入力" %>
           <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-lg" %>
         </div>
         <div class="mb-4">
@@ -20,5 +20,5 @@
     </div><%# col-md-4 %>
   </div><%# row justify-content-center %>
 </div><%# container mt-5 %>
-<%= render "admin/shared/links" %>
+
 

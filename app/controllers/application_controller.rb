@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def authenticate_member!
+  def restrict_to_member!
     unless member_signed_in?
       redirect_to new_member_session_path, alert: 'メールアドレスとパスワードの入力が必要です'
     end

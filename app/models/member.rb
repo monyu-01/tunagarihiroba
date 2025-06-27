@@ -67,6 +67,10 @@ class Member < ApplicationRecord
     active_relationships.find_by(followed_id: member.id).destroy
   end
 
+  def remove_follower(member)
+    passive_relationships.find_by(follower_id: member.id)&.destroy
+  end
+
   def following?(member)
     followings.include?(member)
   end

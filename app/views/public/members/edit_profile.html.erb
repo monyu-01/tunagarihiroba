@@ -1,5 +1,5 @@
 <nav class="navbar border-bottom mt-4">
-  <div class="container">
+  <div class="container w-75">
     <div class="navbar-header mb-4">
       <h2>マイページを編集する</h2>
     </div>
@@ -8,7 +8,7 @@
 
 <div class="container mt-5 px-3 px-md-4">
   <div class="row justify-content-center">
-    <div class="col-md-10">
+    <div class="w-75">
       <%= render 'shared/form_error_messages', object: @member %>
       <div class="profile-edit-container">
         <%= form_with model: @member, url: update_profile_path, method: :patch do |f| %>
@@ -25,7 +25,7 @@
             ※安全のため、住所やお名前など、個人が特定される内容は記載しないようお願いいたします。
           TEXT
           class: "form-control form-control-lg" %><br/>
-        <%= f.submit "変更内容を送信", class: "btn btn-success d-block mx-auto px-4 py-2 btn-lg text-nowrap" %>
+        <%= f.submit "変更内容を送信", class: "btn btn-success d-block mx-auto px-4 py-2 mb-5 btn-lg text-nowrap" %>
       <% end %>
      </div>
     </div>

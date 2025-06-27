@@ -1,5 +1,5 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_member!
+  before_action :restrict_to_member!
   before_action :restrict_guest_member
   before_action :check_user_status
 

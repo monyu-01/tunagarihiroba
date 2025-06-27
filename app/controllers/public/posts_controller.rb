@@ -1,8 +1,8 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_member!
+  before_action :restrict_to_member!
   before_action :restrict_guest_member, except: [:index, :show]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :is_matching_login_user, only: [:edit, :update]
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :is_matching_login_user]
   before_action :set_genres, only: [:new, :edit, :create, :update, :show]
   
 
@@ -33,7 +33,7 @@ class Public::PostsController < ApplicationController
       @posts = @posts.where(genre_id: params[:genre_ids])
     end
 
-    @posts = @posts.page(params[:page])
+    @posts = @posts.order(created_at: :desc).page(params[:page])
   end
 
   def show
