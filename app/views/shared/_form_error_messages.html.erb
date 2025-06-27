@@ -1,8 +1,11 @@
 <% if object.errors.any? %>
-  <h2 class="error-header">入力内容に不備があるようです。</h2>
-  <ul>
-    <% object.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+  <div class="alert alert-danger text-center w-100 mb-5">
+    <h2 class="fs-5 fw-bold">入力内容に不備があるようです。</h2>
+    <ul class="mb-0 list-unstyled">
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
+

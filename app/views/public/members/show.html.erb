@@ -1,31 +1,33 @@
 <nav class="navbar border-bottom mt-4">
   <div class="w-75 container">
-    <div class="row align-items-center mb-4">
-      <div class="col-md-2">
-        <%= image_tag @member.get_profile_image(100,100), class: "rounded-circle me-3" %>
+    <div class="d-flex flex-column flex-md-row align-items-start gap-4 mb-4">
+      <div>
+        <%= image_tag @member.get_profile_image(100,100), class: "rounded-circle" %>
       </div>
-      <div class="col-md-10">
+      <div class="flex-grow-1">
         <h3><%= @member.name %></h3>
         <p><%= @member.self_introduction %></p>
-        <% if current_member == @member %> 
-          <%= link_to edit_member_registration_path, class: "text-dark me-4 text-decoration-none" do %>
-            <span><i class="fa-solid fa-user-gear"></i> 個人情報編集</span>
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+          <% if current_member == @member %> 
+            <%= link_to edit_member_registration_path, class: "btn btn-outline-dark btn-sm" do %>
+              <i class="fa-solid fa-user-gear"></i> 個人情報編集
+            <% end %>
+            <%= link_to edit_profile_path, class: "btn btn-outline-dark btn-sm" do %>
+              <i class="fa-solid fa-file-pen"></i> マイページ編集
+            <% end %>
           <% end %>
-          <%= link_to edit_profile_path, class: "text-dark me-4 text-decoration-none" do %>
-            <span><i class="fa-solid fa-file-pen"></i> マイページ編集</span>
+          <%= link_to followings_member_path(@member), class: "btn btn-outline-dark btn-sm" do %>
+            <i class="fa-solid fa-handshake-simple"></i> 応援している人一覧
           <% end %>
-        <% end %>
-        <%= link_to followings_member_path(current_member), class: "text-dark me-4 text-decoration-none" do %>
-          <span><i class="fa-solid fa-handshake-simple"></i> 応援している人一覧</span>
-        <% end %>
-        <%= link_to followers_member_path(current_member), class: "text-dark me-4 text-decoration-none" do %>
-          <span><i class="fa-solid fa-hand-holding-heart"></i> 応援されている人一覧</span>
-        <% end %>
-        <div id="relastionships-btn-<%= @member.id %>">  
-          <%= render 'public/relationships/follow_btn', member: @member %>
-        </div>
-        <div class="d-flex justify-content-end mt-2">
-          <%= render 'public/reports/report_btn', member: @member %>
+          <%= link_to followers_member_path(@member), class: "btn btn-outline-dark btn-sm" do %>
+            <i class="fa-solid fa-hand-holding-heart"></i> 応援されている人一覧
+          <% end %>
+          <div id="relastionships-btn-<%= @member.id %>">
+            <%= render 'public/relationships/follow_btn', member: @member %>
+          </div>
+          <span class="ms-auto">
+            <%= render 'public/reports/report_btn', member: @member %>
+          </span>
         </div>
       </div>
     </div><%# row align-items-center mb-4 %>
@@ -49,7 +51,9 @@
       <h4 class="card-title"><%= post.title %></h4>
       <p class="card-text">投稿の種類：<%= post.genre.present? ? post.genre.name : "未選択" %></p>
       <p class="card-text"><%= post.body %></p>
-      <%= link_to "続きを見る", post_path(post)%>
+      <div class="text-end">
+        <%= link_to "コメントはこちら", post_path(post), class: "btn btn-success btn-sm" %>
+      </div>
     </div>
   </div>
   <% end %>

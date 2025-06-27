@@ -1,5 +1,5 @@
 <nav class="navbar border-bottom mt-4">
-  <div class="container">
+  <div class="container w-75">
     <div class="navbar-header mb-4">
       <h2>投稿を編集する</h2>
     </div>
@@ -8,8 +8,8 @@
 
 <div class="containar mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-10"> 
-      <%= render 'layouts/form_error_messages', object: @post %>
+    <div class="w-75"> 
+      <%= render 'shared/form_error_messages', object: @post %>
       <div class="post-new-container">
         <%= form_with model: @post do |f| %>
           <h4 class="mb-3">投稿画像（任意）</h4>

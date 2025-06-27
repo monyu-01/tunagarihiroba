@@ -1,5 +1,5 @@
 <% if current_member&.guest? %>
-  <div class="alert alert-warning text-center container w-50 mb-0 py-2">
+  <div class="alert alert-warning text-center container w-50 mt-4 py-2">
     <p class="fw-bold mb-1">ゲストモードでご利用中です。</p>
     <p class="mb-0 small lh-sm">※登録すると、プロフィール・コメント<br>
     保存機能などをご利用いただけます。</p>
@@ -14,9 +14,9 @@
   </nav> 
 <% end %>
 
-<div class="card-list-container py-5">
+<div class="card-list-container py-3">
   <%= render 'public/posts/search_form' %>
-  <div class="w-50 mx-auto mt-5">
+  <div class="w-50 mx-auto mt-4">
     <% if params[:keyword].present? || params[:genre_ids].present? %>
       <h4>検索結果（<%= @posts.total_count %> 件）</h4>
     <% else %>

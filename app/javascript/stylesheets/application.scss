@@ -15,12 +15,8 @@ input[type="radio"] {
 }
 
 .n-circle {
-    font-size: 0.4em;               
-    color: #efa04c;                 
-    left: -0.3em;                   
-    z-index: 10;
+    position: absolute;
+    padding-left: 1rem;
+    padding-top: 0rem;
+    color: #efa04c;
   }
-
-.n-bell {
-    left: -0.3em;
-}
