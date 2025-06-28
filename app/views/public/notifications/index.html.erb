@@ -13,6 +13,8 @@
     <%= paginate @notifications, theme: 'bootstrap-5' %>
   </div>
 <% else %>
-  <p>通知はありません</p>
+  <div class="d-flex justify-content-center mt-4">
+    <h4>通知はありません。</h4>
+  </div>
 <% end %>
 

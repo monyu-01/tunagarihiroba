@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     get 'how_to', to: 'homes#how_to'
     get '/members/edit_profile', to: 'members#edit_profile', as: 'edit_profile'
     patch '/members/update_profile', to: 'members#update_profile', as: 'update_profile'
+    patch '/members/withdraw', to: 'members#withdraw', as: 'withdraw'
     get '/members/unsubscribe', to: 'members#unsubscribe', as: 'unsubscribe'
     get '/members/saved_posts', to: 'members#saved_posts', as: 'saved_posts'
 

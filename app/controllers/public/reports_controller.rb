@@ -15,7 +15,7 @@ class Public::ReportsController < ApplicationController
     @report.reported_id = @member.id 
 
     if @report.save
-      redirect_to member_path(@member)
+      redirect_to member_path(@member), notice: "通報が完了しました。"
     else
       render :new
     end

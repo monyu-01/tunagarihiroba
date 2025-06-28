@@ -14,6 +14,8 @@ class Member < ApplicationRecord
 
   enum user_status: { available: 0, suspended: 1 }
 
+  scope :available, -> { where(user_status: :available) }
+
   has_one_attached :profile_image, dependent: :destroy  
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -29,6 +31,7 @@ class Member < ApplicationRecord
   has_many :reports_received, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
 
   validates :name, presence: true, on: :update_profile
+  validates :user_status, presence: true
 
   def report_count
     Report.where(reported_id: id).count
