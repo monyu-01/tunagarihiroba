@@ -41,11 +41,11 @@ class Public::MembersController < ApplicationController
   end
 
   def followings
-    @followings = @member.followings.page(params[:page]).per(15)
+    @followings = @member.followings.merge(Member.available).page(params[:page]).per(15)
   end
 
   def followers
-    @followers = @member.followers.page(params[:page]).per(15)
+    @followers = @member.followers.merge(Member.available).page(params[:page]).per(15)
   end
 
   private
