@@ -5,6 +5,10 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :saved_posts, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  
+  scope :with_available_members, -> {
+    joins(:member).merge(Member.available).includes(:member, :genre)
+  }
 
   def get_image(width, height)
     unless image.attached?

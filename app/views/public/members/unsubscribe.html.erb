@@ -5,13 +5,13 @@
         <h3 class="fw-bold">本当に退会しますか？</h3>
       </div>
       <h5 class="mb-5">
-        退会すると、これまでのすべての投稿や「つながり」の記録が完全に削除されます。<br>
-        一度退会すると、情報の復元はできません。<br>
+        退会すると、あなたのアカウントは利用できなくなり、<br>
+        投稿や「つながり」の機能も停止されます。<br>
         内容をよくご確認のうえ、退会をご希望の場合は、下の「退会する」ボタンを押してください。
       </h5>
       <div class="d-flex justify-content-center gap-5">
         <%= link_to "退会しない", member_path(current_member), class: "btn btn-success btn-lg px-4" %>
-        <%= button_to "退会する", registration_path(:member), method: :delete, class: "btn btn-danger btn-lg px-4" %>
+        <%= button_to "退会する", withdraw_path, method: :patch, class: "btn btn-danger btn-lg px-4", data: { confirm: "本当に退会しますか？" } %>
       </div>
     </div>
   </div>

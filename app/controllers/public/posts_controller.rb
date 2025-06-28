@@ -21,8 +21,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.joins(:member).includes(:genre, :member)
     @genres = Genre.all
+    @posts = Post.with_available_members
 
     if params[:keyword].present?
       kw = "%#{params[:keyword]}%"
@@ -32,17 +32,23 @@ class Public::PostsController < ApplicationController
     if params[:genre_ids].present?
       @posts = @posts.where(genre_id: params[:genre_ids])
     end
-
+    
     @posts = @posts.order(created_at: :desc).page(params[:page])
   end
 
   def show
+    unless @post.member.available?
+      redirect_to posts_path, alert: "この投稿は閲覧できません。"
+      return
+    end
+  
     @comment = Comment.new
+    @comments = @post.comments.joins(:member).merge(Member.available)
   end
 
   def followings
     following_ids = current_member.following_ids
-    @posts = Post.where(member_id: following_ids).includes(:member, :genre).order(created_at: :desc).page(params[:page])
+    @posts = Post.with_available_members.where(member_id: following_ids).order(created_at: :desc).page(params[:page])
   end
 
   def edit

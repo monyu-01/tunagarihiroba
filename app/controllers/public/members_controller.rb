@@ -1,11 +1,15 @@
 class Public::MembersController < ApplicationController
   before_action :restrict_to_member!
   before_action :restrict_guest_member
+  before_action :set_member, only: [:show, :followings, :followers]
   before_action :check_user_status
 
-
   def show
-    @member = Member.find(params[:id])
+    unless @member.user_status == "available"
+      redirect_to posts_path, alert: "このプロフィールは閲覧できません。"
+      return
+    end
+    
     @posts = @member.posts.page(params[:page])
   end
 
@@ -25,21 +29,30 @@ class Public::MembersController < ApplicationController
     end
   end
 
+  def withdraw
+    current_member.update(user_status: :suspended)
+    reset_session
+    redirect_to root_path, notice: "退会処理が完了しました。ご利用ありがとうございました。"
+  end
+
   def saved_posts
-    @saved_posts = current_member.saved_posts_posts.page(params[:page])
+    base_scope = current_member.saved_posts_posts.joins(:member).merge(Member.available)
+    @saved_posts = base_scope.order('saved_posts.created_at DESC').page(params[:page])
   end
 
   def followings
-    member = Member.find(params[:id])
     @followings = member.followings.page(params[:page]).per(15)
   end
 
   def followers
-    mamber = Member.find(params[:id])
     @followers = mamber.followers.page(params[:page]).per(15)
   end
 
   private
+
+  def set_member
+    @member = Member.find(params[:id])
+  end
 
   def profile_params
     params.require(:member).permit(:name, :self_introduction, :profile_image)

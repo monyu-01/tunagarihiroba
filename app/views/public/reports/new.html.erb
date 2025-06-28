@@ -32,7 +32,9 @@
 
           <%= form_with model:[@member, @report], class: "my-4" do |f| %>
             <div class="form-group d-flex justify-content-center mb-4">
-              <%= f.text_area :reason, rows: '6', class: "form-control" %>
+              <div class="w-100">
+                <%= f.text_area :reason, rows: 6, class: "form-control" %>
+              </div>
             </div>
             <div class="form-group d-flex justify-content-center">
               <%= f.submit "通報する",data: {

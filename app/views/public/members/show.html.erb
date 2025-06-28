@@ -34,6 +34,7 @@
   </div><%# w-75 container %>
 </nav><%# navbar border-bottom mt-4 %>
 
+<%= render 'layouts/flash_messages' %>
 <div class="card-list-container py-5">
   <% @posts.each do |post| %>
   <div class="card w-50 mx-auto mt-4">
