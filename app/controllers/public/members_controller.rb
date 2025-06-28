@@ -5,11 +5,6 @@ class Public::MembersController < ApplicationController
   before_action :check_user_status
 
   def show
-    unless @member.user_status == "available"
-      redirect_to posts_path, alert: "このプロフィールは閲覧できません。"
-      return
-    end
-    
     @posts = @member.posts.page(params[:page])
   end
 

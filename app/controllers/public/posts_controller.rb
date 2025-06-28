@@ -37,11 +37,6 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    unless @post.member.available?
-      redirect_to posts_path, alert: "この投稿は閲覧できません。"
-      return
-    end
-  
     @comment = Comment.new
     @comments = @post.comments.joins(:member).merge(Member.available)
   end
