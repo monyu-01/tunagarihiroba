@@ -23,11 +23,8 @@ class Post < ApplicationRecord
   end
 
   def create_notification_comment!(current_member, comment_id)
-    temp_ids = Comment.select(:member_id).where(post_id: id).where.not(member_id: current_member.id).distinct
-    temp_ids.each do |temp_id|
-      save_notification_comment!(current_member, comment_id, temp_id['member_id'])
-    end
-    save_notification_comment!(current_member, comment_id, member_id) if temp_ids.blank?
+    return if member_id == current_member.id  
+    save_notification_comment!(current_member, comment_id, member_id)
   end
 
   def save_notification_comment!(current_member, comment_id, visited_id)
