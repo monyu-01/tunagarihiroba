@@ -4,11 +4,13 @@ class Public::NotificationsController < ApplicationController
   before_action :check_user_status
 
   def index
-    base_scope = current_member.passive_notifications.joins(:visitor).merge(Member.available)
-    @notifications = base_scope.includes(:visitor, :post, :comment).page(params[:page]).per(15)
-    
-    @notifications.where(checked: false).each do |notification|
+    # 非アクティブ含めて既読処理
+    current_member.passive_notifications.where(checked: false).each do |notification|
       notification.update(checked: true)
-    end    
+    end 
+
+    # 表示はアクティブユーザーからのみに限定
+    base_scope = current_member.passive_notifications.joins(:visitor).merge(Member.available)
+    @notifications = base_scope.includes(:visitor, :post, :comment).page(params[:page]).per(15) 
   end
 end
