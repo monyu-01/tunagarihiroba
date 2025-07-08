@@ -1,12 +1,11 @@
-<%= link_to notifications_path, class: "nav-link text-body" do %>
-  <% if unchecked_notifications.any? %>
-    <span class="fa-stack me-2">
-      <i class="fa-regular fa-bell n-bell fa-stack-1x"></i>
-      <i class="fa-solid fa-circle n-circle fa-stack-0.5x"></i>
-    </span>
-  <% else %>
-    <i class="fa-regular fa-bell me-2"></i>
-  <% end %>
-    <span>通知一覧</span>
-<% end %>
+<% unread_count = unchecked_notifications.count %>
 
+<%= link_to notifications_path, class: "nav-link text-body d-flex align-items-center" do %>
+  <i class="fa-regular fa-bell me-2"></i>
+  <span>通知一覧</span>
+  <% if unread_count > 0 %>
+    <span class="badge rounded-pill bg-danger ms-2">
+      <%= unread_count %>
+    </span>
+  <% end %>
+<% end %>
