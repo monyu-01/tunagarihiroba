@@ -1,12 +1,12 @@
- <header class="header">
+<header class="header">
   <div class="header-row">
     <nav class="navbar navbar-expand-lg bg-light navbar-light">
       <div class="container-fluid px-5">
         <%= link_to root_path, class: "navbar-brand" do %>
           <%= image_tag "tsunagari_logo_flower.png", alt: "つながり広場のロゴ", width: 120, height: 80 %>
         <% end %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler d-flex align-items-center d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon me-2"></span> 項目の一覧
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">

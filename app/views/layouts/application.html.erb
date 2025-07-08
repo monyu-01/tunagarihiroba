@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="https://kit.fontawesome.com/c4e027a92c.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -19,10 +20,13 @@
     <% elsif member_signed_in? %>
       <div class="layout">
         <div class="row">
-          <div class="col-md-2 d-none d-md-block vh-100 sidebar-left border-end">
+          <div class="col-xl-3 d-none d-xl-block sidebar-left border-end">
             <%= render 'layouts/sidebar' %>
           </div>
-          <div class="col-md-10 main-right">
+          <div class="col-xl-9 col-12">
+            <div class="d-xl-none mb-2">
+              <%= render 'layouts/hamburger_menu' %>
+            </div>
             <%= yield %>
           </div>
         </div>

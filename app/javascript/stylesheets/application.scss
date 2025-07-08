@@ -14,9 +14,10 @@ input[type="radio"] {
     accent-color: #198754;
 }
 
-.n-circle {
-    position: absolute;
-    padding-left: 1rem;
-    padding-top: 0rem;
-    color: #efa04c;
-  }
+.sidebar-link-large {
+    font-size: 1.1rem;   
+}
+
+#hamburgerMenu {
+    z-index: 1000;
+}

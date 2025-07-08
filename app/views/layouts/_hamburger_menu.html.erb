@@ -1,0 +1,39 @@
+<button class="btn btn-outline-success text-start fw-bold d-xl-none mb-2 mt-3 ms-3" data-bs-toggle="collapse" data-bs-target="#hamburgerMenu">
+  <i class="fa-solid fa-bars me-2"></i> 項目の一覧
+</button>
+
+<div id="hamburgerMenu" class="collapse bg-light p-3">
+  <%= link_to new_post_path, class: "nav-link text-body sidebar-link-large mb-3" do %>
+    <i class="fa-regular fa-pen-to-square me-2"></i> 新規投稿
+  <% end %>
+
+  <%= link_to member_path(current_member), class: "nav-link text-body sidebar-link-large mb-3" do %>
+    <i class="fa-regular fa-file-lines me-2"></i> 自分の投稿一覧
+  <% end %>
+  
+  <%= link_to saved_posts_path, class: "nav-link text-body sidebar-link-large mb-3" do %>
+    <i class="fa-regular fa-bookmark me-2"></i> 保存した投稿一覧
+  <% end %>
+
+  <%= link_to followings_posts_path, class: "nav-link text-body sidebar-link-large mb-3" do %>
+    <i class="fa-regular fa-thumbs-up me-2"></i> 応援している人の投稿一覧
+  <% end %>
+
+  <%= link_to posts_path, class: "nav-link text-body sidebar-link-large mb-3" do %>
+    <i class="fa-solid fa-magnifying-glass me-2"></i> 気になる投稿を検索
+  <% end %>
+
+  <%= render 'shared/notification_icon' %>
+
+  <%= link_to member_path(current_member), class: "nav-link text-body sidebar-link-large mb-3 mt-3" do %>
+    <i class="fa-regular fa-user me-2"></i> マイページ
+  <% end %>
+  
+  <%# <%= link_to how_to_path, class: "nav-link text-body" do %>
+   <%# <i class="fa-solid fa-book me-2"></i> サイトの使い方 %>
+  <%# <% end %>
+
+  <%= link_to destroy_member_session_path, method: :delete, class: "nav-link text-body sidebar-link-large mb-3" do %>
+    <i class="fa-solid fa-house me-2"></i> ホームに戻る
+  <% end %>
+</div>
