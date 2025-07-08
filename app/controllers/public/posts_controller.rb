@@ -38,7 +38,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @post.comments.joins(:member).merge(Member.available)
+    @comments = @post.comments.with_available_members
   end
 
   def followings
