@@ -17,10 +17,10 @@
             <% end %>
           <% end %>
           <%= link_to followings_member_path(@member), class: "btn btn-outline-dark btn-sm" do %>
-            <i class="fa-solid fa-handshake-simple"></i> 応援している人一覧
+            <i class="fa-solid fa-handshake-simple"></i> 応援している人
           <% end %>
           <%= link_to followers_member_path(@member), class: "btn btn-outline-dark btn-sm" do %>
-            <i class="fa-solid fa-hand-holding-heart"></i> 応援されている人一覧
+            <i class="fa-solid fa-hand-holding-heart"></i> 応援されている人
           <% end %>
           <div id="relastionships-btn-<%= @member.id %>">
             <%= render 'public/relationships/follow_btn', member: @member %>

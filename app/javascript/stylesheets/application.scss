@@ -1,5 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
 
+html, body {
+  height: 100%;
+  overflow-y: auto;
+}
+
 .pagination .page-link {
     color: black;
 }
@@ -16,6 +21,10 @@ input[type="radio"] {
 
 .sidebar-link-large {
     font-size: 1.1rem;   
+}
+
+.sidebar-link-large i {
+  font-size: 1.2rem; 
 }
 
 #hamburgerMenu {
@@ -37,3 +46,20 @@ input[type="radio"] {
       width: 75% !important;
     }
   }
+
+  @media (max-width: 576px) {
+    .responsive-btn {
+      font-size: 1rem;
+      padding: 0.25rem 0.75rem;
+    }
+  }
+
+
+@media (max-width: 500px) {
+  .container.w-50,
+  .alert-warning.custom-width,
+  .alert-success.custom-width,
+  .alert-danger.custom-width { 
+    width: 75% !important;
+  }
+}

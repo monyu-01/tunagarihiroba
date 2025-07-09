@@ -1,8 +1,8 @@
 <% unread_count = unchecked_notifications.count %>
 
 <%= link_to notifications_path, class: "nav-link text-body d-flex align-items-center sidebar-link-large" do %>
-  <i class="fa-regular fa-bell me-3"></i>
-  <span>通知一覧</span>
+  <i class="fa-regular fa-bell me-4"></i>
+  <span>通知</span>
   <% if unread_count > 0 %>
     <span class="badge rounded-pill bg-danger ms-2">
       <%= unread_count %>

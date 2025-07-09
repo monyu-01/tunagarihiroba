@@ -1,17 +1,17 @@
-<div class="container d-flex vh-100 align-items-center">
+<div class="container-fluid d-flex vh-100 align-items-center justify-content-center">
   <div class="row justify-content-center w-100">
-    <div class="col-md-6">
+    <div class="col-12 col-md-7 mx-auto">
       <div class="mb-5">
         <h3 class="fw-bold">本当に退会しますか？</h3>
       </div>
       <h5 class="mb-5">
-        退会すると、あなたのアカウントは利用できなくなり、<br>
+        退会すると、あなたのアカウントは利用できなくなります。<br>
         投稿や「つながり」の機能も停止されます。<br>
         内容をよくご確認のうえ、退会をご希望の場合は、下の「退会する」ボタンを押してください。
       </h5>
       <div class="d-flex justify-content-center gap-5">
-        <%= link_to "退会しない", member_path(current_member), class: "btn btn-success btn-lg px-4" %>
-        <%= button_to "退会する", withdraw_path, method: :patch, class: "btn btn-danger btn-lg px-4", data: { confirm: "本当に退会しますか？" } %>
+        <%= link_to "退会しない", member_path(current_member), class: "btn btn-success btn-lg px-4 responsive-btn" %>
+        <%= button_to "退会する", withdraw_path, method: :patch, class: "btn btn-danger btn-lg px-4 responsive-btn", data: { confirm: "本当に退会しますか？" } %>
       </div>
     </div>
   </div>

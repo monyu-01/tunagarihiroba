@@ -1,33 +1,33 @@
-<div class="d-flex justify-content-center my-3 sidebar-logo">
+<div class="d-flex justify-content-start my-3 ps-4 sidebar-logo">
   <%= link_to root_path, class: "navbar-brand " do %>
     <%= image_tag "tsunagari_logo_flower.png", alt: "つながり広場のロゴ", width: 150, height: 100 %>
   <% end %>
 </div>
-<div class="flex-column nav ps-5">
+<div class="flex-column nav ps-3">
   <%= link_to new_post_path, class: "nav-link text-body sidebar-link-large" do %>
-    <i class="fa-regular fa-pen-to-square me-2"></i> 新規投稿
+    <i class="fa-regular fa-pen-to-square me-3"></i> 新規投稿
   <% end %>
 
   <%= link_to member_path(current_member), class: "nav-link text-body sidebar-link-large" do %>
-    <i class="fa-regular fa-file-lines me-2"></i> 自分の投稿一覧
+    <i class="fa-regular fa-file-lines me-3"></i> 自分の投稿
   <% end %>
   
   <%= link_to saved_posts_path, class: "nav-link text-body sidebar-link-large" do %>
-    <i class="fa-regular fa-bookmark me-2"></i> 保存した投稿一覧
+    <i class="fa-regular fa-bookmark me-3"></i> 保存した投稿
   <% end %>
 
   <%= link_to followings_posts_path, class: "nav-link text-body sidebar-link-large" do %>
-    <i class="fa-regular fa-thumbs-up me-2"></i> 応援している人の投稿一覧
+    <i class="fa-regular fa-thumbs-up me-3"></i> 応援している人の投稿
   <% end %>
 
   <%= link_to posts_path, class: "nav-link text-body sidebar-link-large" do %>
-    <i class="fa-solid fa-magnifying-glass me-2"></i> 気になる投稿を検索
+    <i class="fa-solid fa-magnifying-glass me-3"></i> 気になる投稿を検索
   <% end %>
 
   <%= render 'shared/notification_icon' %>
 
   <%= link_to member_path(current_member), class: "nav-link text-body sidebar-link-large" do %>
-    <i class="fa-regular fa-user me-2"></i> マイページ
+    <i class="fa-regular fa-user me-3"></i> マイページ
   <% end %>
   
   <%# <%= link_to how_to_path, class: "nav-link text-body" do %>
