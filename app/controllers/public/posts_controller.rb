@@ -14,7 +14,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.member = current_member
     if @post.save
-      redirect_to member_path(current_member)
+      redirect_to member_path(current_member), notice: "投稿が完了しました。"
     else
       render :new
     end
@@ -51,7 +51,7 @@ class Public::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to member_path(current_member)
+      redirect_to member_path(current_member), notice: "投稿を編集しました。"
     else
       render :edit
     end
@@ -59,7 +59,7 @@ class Public::PostsController < ApplicationController
 
   def destroy
     if @post.destroy
-      redirect_to member_path(current_member)
+      redirect_to member_path(current_member), notice: "投稿を削除しました。"
     else
       render :edit
     end
