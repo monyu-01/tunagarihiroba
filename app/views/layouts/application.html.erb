@@ -12,7 +12,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="page-wrapper">
     <% if member_signed_in? && current_member.guest? %>
       <%= render 'layouts/guest_header' %>
       <%= render 'layouts/flash_messages' %>

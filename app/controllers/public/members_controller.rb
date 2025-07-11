@@ -18,7 +18,7 @@ class Public::MembersController < ApplicationController
     @member.assign_attributes(profile_params)
     if @member.valid?(:update_profile)
       @member.save
-      redirect_to member_path(@member)
+      redirect_to member_path(@member), notice: "プロフィールを更新しました。"
     else
       render :edit_profile
     end
