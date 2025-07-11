@@ -5,7 +5,7 @@ class Public::MembersController < ApplicationController
   before_action :check_user_status
 
   def show
-    @posts = @member.posts.page(params[:page])
+    @posts = @member.posts.order(created_at: :desc).page(params[:page])
   end
 
 
