@@ -3,32 +3,24 @@
 
 <div class="container w-50 notifications-page mt-2">
   <div class="list-group">
-    <div class="d-flex align-items-center">
-      <%= link_to member_path(visitor), class: "d-flex align-items-center me-1 text-success text-decoration-none" do %>
-        <%= image_tag visitor.get_profile_image(40, 40), class: "rounded-circle me-2" %>
-        <strong><%= visitor.name %></strong>
-      <% end %>
-      <span>さんが</span>
+    <div class="list-group-item d-flex align-items-center">
+      <%= image_tag visitor.get_profile_image(40, 40), class: "rounded-circle me-2" %>
+      <div class="flex-grow-1">
+        <strong class="text-success"><%= visitor.name %></strong> さんが
 
-      <% if notification.action == 'follow' %>
-        <span>あなたをフォローしました。</span>
+        <% if notification.action == 'follow' %>
+          あなたをフォローしました。
 
-      <% elsif notification.action == 'comment' %>
-        <% if notification.post.member_id == visited.id %>
-          <%= link_to 'あなたの投稿', notification.post, class: "fw-bold text-success text-decoration-none" %>
-        <% else %>
-          <span>
-            <%= link_to post_path(notification.post), class: "text-success text-decoration-none" do %>
-              <%= image_tag visitor.get_profile_image(40, 40), class: "rounded-circle me-2" %>
-              <strong><%= notification.post.member.name %>さんの投稿</strong>
-            <% end %>
-          </span>
+        <% elsif notification.action == 'comment' %>
+          <% if notification.post.member_id == visited.id %>
+            <%= link_to 'あなたの投稿', notification.post, class: "fw-bold text-success text-decoration-none" %>
+          <% end %>
+          にコメントしました。
+          <p class="text-muted mb-0">
+            <%= notification.comment&.comment_body %>
+          </p>
         <% end %>
-        <span>にコメントしました。</span>
-        <p class="text-muted mb-0">
-          <%= Comment.find_by(id: notification.comment_id)&.comment_body %>
-        </p>
-      <% end %>
+      </div>
     </div>
   </div>
 

@@ -31,6 +31,10 @@ input[type="radio"] {
     z-index: 1000;
 }
 
+.list-group-item {
+  border: none;
+}
+
 @media (max-width: 390px) {
     .navbar-toggler {
       font-size: 0.8rem;
@@ -38,14 +42,6 @@ input[type="radio"] {
       border-radius: 0.3rem;
     }
 }
-
-@media (max-width: 500px) {
-    .alert-warning.custom-width,
-    .alert-success.custom-width,
-    .alert-danger.custom-width { 
-      width: 75% !important;
-    }
-  }
 
   @media (max-width: 576px) {
     .responsive-btn {
@@ -63,3 +59,10 @@ input[type="radio"] {
     width: 75% !important;
   }
 }
+
+@media (max-width: 500px) {
+  .container.notifications-page{ 
+    width: 100% !important;
+  }
+}
+
