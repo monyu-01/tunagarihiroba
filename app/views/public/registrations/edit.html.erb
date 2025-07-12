@@ -11,11 +11,6 @@
           <%= f.label :email, "メールアドレス" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
         </div>
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div class="mb-4 text-muted small">
-            現在確認待ち: <%= resource.unconfirmed_email %>
-          </div>
-        <% end %>
         <div class="mb-4">
           <%= f.label :password, "新しいパスワード" %>
           <span class="text-muted small">(新しく設定したいパスワードを入力してください)</span>

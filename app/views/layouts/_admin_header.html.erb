@@ -1,33 +1,28 @@
 <header class="header">
-  <div class="header-row">
-    <nav class="navbar navbar-expand-lg bg-light navbar-light">
-      <div class="container-fluid px-5">
-        <%= link_to admin_posts_path, class: "navbar-brand" do %>
-          <%= image_tag "tsunagari_logo_flower.png", alt: "つながり広場のロゴ", width: 120, height: 80 %>
-        <% end %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <%= link_to "投稿一覧", admin_posts_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "登録者一覧", admin_members_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "通報一覧", admin_reports_path, class: "nav-link" %>
-            </li> 
-            <li class="nav-item">
-              <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link" %>
-            </li> 
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
-            </li>
-          </ul>
-        </div>
-      </div><%# container-fluid px-5 %>
-    </nav>
-  </div><%# header-row %>
+  <nav class="navbar navbar-expand-lg bg-light navbar-light">
+    <div class="container-fluid px-5">
+      <%= link_to admin_posts_path, class: "navbar-brand" do %>
+        <%= image_tag "tsunagari_logo_flower.png", alt: "つながり広場のロゴ", width: 120, height: 80 %>
+      <% end %>
+      <div class="navbar-collapse d-flex justify-content-end">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <%= link_to "投稿一覧", admin_posts_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "登録者一覧", admin_members_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "通報一覧", admin_reports_path, class: "nav-link" %>
+          </li> 
+          <li class="nav-item">
+            <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link" %>
+          </li> 
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        </ul>
+      </div>
+    </div><%# container-fluid px-5 %>
+  </nav>
 </header>
