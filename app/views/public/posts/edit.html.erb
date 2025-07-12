@@ -1,38 +1,34 @@
-<nav class="navbar border-bottom mt-4">
+<div class="border-bottom mt-4">
   <div class="container w-75">
-    <div class="navbar-header mb-4">
-      <h2>投稿を編集する</h2>
-    </div>
+    <h2 class="mb-4">投稿を編集する</h2>
   </div>
-</nav> 
+</div> 
 
 <div class="containar mt-5">
-  <div class="row justify-content-center">
-    <div class="w-75"> 
-      <%= render 'shared/form_error_messages', object: @post %>
-      <div class="post-new-container">
-        <%= form_with model: @post do |f| %>
-          <h4 class="mb-3">投稿画像（任意）</h4>
-          <%= f.file_field :image, accept: "image/*" %>
-          <h4 class="mb-3 mt-4">タイトル</h4>
-          <%= f.text_field :title, class: "form-control form-control-lg" %>
-          <h4 class="mb-3 mt-4">投稿内容</h4>
-          <%= f.text_area :body, rows: 10, class: "form-control form-control-lg" %><br/>
-          <h4 class="mb-3 mt-4">内容の種類(任意)</h4>
-          <div class="d-flex flex-wrap gap-3 mb-4 genre-options">
-            <% Genre.all.each do |genre| %>
-              <label class="genre-check">
-                <%= radio_button_tag 'post[genre_id]', genre.id, @post.genre_id == genre.id %>
-                <span><%= genre.name %></span>
-              </label>
-            <% end %>
-          </div>
-          <div class="d-flex justify-content-center gap-5 mt-4">
-            <%= f.submit "更新する", class: "btn btn-success btn-lg px-4" %>
-            <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-lg px-5" %>
-          </div>
-        <% end %>
-      </div>
+  <div class="w-75 mx-auto"> 
+    <%= render 'shared/form_error_messages', object: @post %>
+    <div class="post-new-container">
+      <%= form_with model: @post do |f| %>
+        <h4 class="mb-3">投稿画像（任意）</h4>
+        <%= f.file_field :image, accept: "image/*" %>
+        <h4 class="mb-3 mt-4">タイトル</h4>
+        <%= f.text_field :title, class: "form-control form-control-lg" %>
+        <h4 class="mb-3 mt-4">投稿内容</h4>
+        <%= f.text_area :body, rows: 20, class: "form-control form-control-lg" %><br/>
+        <h4 class="mb-3 mt-4">内容の種類(任意)</h4>
+        <div class="d-flex flex-wrap gap-3 mb-4 genre-options">
+          <% @genres.each do |genre| %>
+            <label class="genre-check">
+              <%= radio_button_tag 'post[genre_id]', genre.id, @post.genre_id == genre.id %>
+              <span><%= genre.name %></span>
+            </label>
+          <% end %>
+        </div>
+        <div class="d-flex justify-content-center gap-5 mt-4 mb-5">
+          <%= f.submit "更新する", class: "btn btn-success mx-auto d-block btn-lg mb-5 responsive-btn" %>
+          <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger mx-auto d-block btn-lg mb-5 responsive-btn" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
