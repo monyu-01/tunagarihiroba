@@ -65,13 +65,15 @@ input[type="radio"] {
   .report-page.w-75,
   .search-page.w-50,
   .post-list.w-50,
-  .search-title.w-50{ 
+  .search-title.w-50,
+  .page-title.w-50,
+  .saved-posts-container.w-50{ 
     width: 100% !important;
   }
 }
 
 @media (max-width: 500px) {
-  .search-title {
+  .page-title{
     padding-left: 1rem;
     padding-right: 1rem;
   }

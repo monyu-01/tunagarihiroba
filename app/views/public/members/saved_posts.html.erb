@@ -1,9 +1,10 @@
-<nav class="navbar border-bottom mt-4">
-  <div class="container w-50">
-    <div class="navbar-header mb-4">
-      <h2>保存した投稿一覧</h2>
-    </div>
+<div class="border-bottom mt-4">
+  <div class="container w-50 page-title">
+    <h2 class="mb-4">保存した投稿</h2>
   </div>
-</nav> 
+</div> 
 
 <%= render 'public/posts/post_list', posts: @saved_posts %>
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @saved_posts, theme: 'bootstrap-5' %>
+</div>
