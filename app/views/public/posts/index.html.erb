@@ -6,7 +6,7 @@
   </div>
 <% elsif current_member %>
   <nav class="navbar border-bottom mt-4">
-    <div class="container w-50">
+    <div class="container w-50 search-title">
       <div class="navbar-header mb-4">
         <h2>投稿を探す</h2>
       </div>
@@ -16,7 +16,7 @@
 
 <div class="card-list-container py-3">
   <%= render 'public/posts/search_form' %>
-  <div class="w-50 mx-auto mt-4">
+  <div class="w-50 mx-auto mt-4 search-title">
     <% if params[:keyword].present? || params[:genre_ids].present? %>
       <h4>検索結果（<%= @posts.total_count %> 件）</h4>
     <% else %>
