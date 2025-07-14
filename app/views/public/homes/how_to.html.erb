@@ -1,2 +1,86 @@
-<h1>Public::Homes#how_to</h1>
-<p>Find me in app/views/public/homes/how_to.html.erb</p>
+<div class="container text-center my-5 py-5">
+  <h2 class="mb-3 fw-bold">サイトの使い方</h2>
+  <p class="mb-4 d-none d-sm-block">
+    こちらでは、投稿の一例と交流についてご紹介します。<br>
+    「何を書けばよいかわからない」と感じたときの参考としてご覧ください。<br>
+    投稿内容は、どんな些細なことでも構いません。<br>
+    日常のことから、ちょっとした変化まで、自由にご記入いただけます。
+  </p>
+  <p class="mb-4 d-block d-sm-none">
+    こちらでは、投稿の一例と交流に<br>
+    ついてご紹介します。<br>
+    「何を書けばよいかわからない」と感じたとき<br>
+    の参考としてご覧ください。<br>
+    投稿内容は、どんな些細なことでも<br>
+    構いません。<br>
+    日常のことから、ちょっとした変化まで、<br>
+    自由にご記入いただけます。
+  </p>
+</div>
+
+<div class="container text-center my-4">
+  <h3 class="fw-bold">投稿の一例</h3>
+</div>
+<div class="container">
+  <div class="w-50 mx-auto how-to-page">
+    <div class="mb-3 card shadow-sm border-0 p-4 card-guide">
+      <div class="card-body">
+        <p class="fw-bold mb-2">例1：病気の診断を受けたときの投稿例</p>
+        <p class="mt-2 mb-4 text-muted small">
+          発達障害の診断を受けたお子さんとの日常を振り返った投稿です。<br>
+          検査を受けることは、時に大きな不安や勇気が伴います。<br>
+         「もっと早く気づけていれば」「あの時こうしていれば」と思い悩む気持ちも、向き合ったからこそ生まれる大切な感情です。<br>
+          それでも一歩ずつ現実を受け止め、行動してきた経験は、同じような悩みを抱える誰かの光になります。<br>
+          利用できた支援サービスや、少しずつ変化していった日々の経過をシェアすることで、<br>
+          「同じように向き合ってきた仲間がいる」と感じられることで、次の一歩を踏み出す勇気につながるかもしれません。
+        </p>
+      </div>
+      <div class="text-center">
+        <%= image_tag('post_example_medical_diagnosis.png', class: 'how-to-image mb-4 mt-4', alt: '病気の診断後に家族で過ごす時間を描いた投稿例のイメージ画像') %>
+      </div>
+    </div>
+    <div class="mb-3 card shadow-sm border-0 p-4 card-guide">
+      <div class="card-body">
+        <p class="fw-bold mb-2">例2：健康を保つためのささやかな習慣の投稿例</p>
+        <p class="mt-2 mb-4 text-muted small">
+          朝の公園で軽く体を動かすことを習慣にし、仲間と笑い合う時間を大切にしている投稿です。<br>
+          健康のために意識的な運動を始めたわけではなく、「気がつけば日常になっていた」ささやかな習慣が紹介されています。<br>
+          ご自身の習慣や趣味が、誰かの健康のヒントになるかもしれません。<br>
+          ぜひ気軽にシェアしてみてください。
+        </p>
+      </div>
+      <div class="text-center">
+        <%= image_tag('post_example_wellbeing_exercise.png', class: 'how-to-image mb-4 mt-4', alt: '毎朝の運動習慣としてサッカーを楽しむ投稿例のイメージ画像') %>
+      </div>
+    </div>
+    <div class="mb-3 card shadow-sm border-0 p-4 card-guide">
+      <div class="card-body">
+        <p class="fw-bold mb-2">例3：障害と共に生きる日々の投稿例</p>
+        <p class="mt-2 mb-4 text-muted small">
+          脳梗塞によって体に麻痺が残った父との暮らしの中で、工夫しながらも外出を楽しむ日常をシェアした投稿です。<br>
+          家族との関わりや支援を通じて、「できること」を増やしながら過ごす姿が描かれています。<br>
+          病気や障害があっても、工夫と周囲の支えによって豊かな時間を持つことができることを伝えています。
+        </p>
+      </div>
+      <div class="text-center">
+        <%= image_tag('post_example_lifestyle_disability.png', class: 'how-to-image mb-4 mt-4', alt: '障害のある祖父と家族がアルバムを囲み思い出を語る様子の投稿例画像') %>
+      </div>
+    </div>
+    <div class="mb-3 card shadow-sm border-0 p-4 card-guide">
+      <div class="card-body">
+        <p class="fw-bold mb-2">交流の仕方についての説明</p>
+        <p class="mt-2 mb-4 text-muted small">
+          投稿に対しては、コメント欄からメッセージを送ることができます。<br>
+          応援の言葉や感想、あるいは「自分にも似た経験がある」といった気持ちを伝えることで、さまざまな交流が生まれます。<br>
+          お互いの背中をそっと押せるようなきっかけになるかもしれません<br>
+          まずは気軽に、一言メッセージから始めてみてください。
+        </p>
+      </div>
+      <div class="text-center">
+        <%= image_tag('interaction_sample_01_post.png', class: 'how-to-image mt-4', alt: '投稿画面とコメントによる交流の例') %>
+        <%= image_tag('interaction_sample_02_comment_input.png', class: 'how-to-image mb-4', alt: 'コメント入力欄を使った応援の例') %>
+      </div>
+    </div>
+  </div><%# w-50 mx-auto how-to-page %>
+</div><%# container %>
+
