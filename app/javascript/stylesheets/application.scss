@@ -9,22 +9,32 @@ html, body {
   max-width: 640px;
 }
 
+.how-to-image{
+  max-width: 100%;
+  height: 70%;
+  width: 70%;
+}
+
+.card-guide{
+  background-color: #f8f9fa;
+} 
+
 .pagination .page-link {
-    color: black;
+  color: black;
 }
   
 .pagination .page-item.active .page-link {
-    background-color:#2B8666;
-    color: black;
-    border-color: #2B8666;
+  background-color:#2B8666;
+  color: black;
+  border-color: #2B8666;
  }
  
 input[type="radio"] {
-    accent-color: #198754;
+  accent-color: #198754;
 }
 
 .sidebar-link-large {
-    font-size: 1.1rem;   
+  font-size: 1.1rem;   
 }
 
 .sidebar-link-large i {
@@ -32,7 +42,7 @@ input[type="radio"] {
 }
 
 #hamburgerMenu {
-    z-index: 1000;
+  z-index: 1000;
 }
 
 .list-group-item {
@@ -40,44 +50,43 @@ input[type="radio"] {
 }
 
 @media (max-width: 390px) {
-    .navbar-toggler {
-      font-size: 0.8rem;
-      padding: 0.2rem 0.4rem;
-      border-radius: 0.3rem;
-    }
+  .navbar-toggler {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.3rem;
+  }
 }
 
-  @media (max-width: 576px) {
-    .responsive-btn {
-      font-size: 1rem;
-      padding: 0.25rem 0.75rem;
-    }
+@media (max-width: 500px) {
+  .responsive-btn {
+    font-size: 1rem;
+    padding: 0.25rem 0.75rem;
   }
 
-
-@media (max-width: 500px) {
   .container.w-50,
   .alert-warning.custom-width,
   .alert-success.custom-width,
-  .alert-danger.custom-width { 
+  .alert-danger.custom-width {
     width: 75% !important;
   }
-}
 
-@media (max-width: 500px) {
+  .saved-posts-container.w-50,
   .container.notifications-page,
   .report-page.w-75,
   .search-page.w-50,
   .post-list.w-50,
   .search-title.w-50,
   .page-title.w-50,
-  .saved-posts-container.w-50{ 
+  .how-to-page.w-50 {
     width: 100% !important;
   }
-}
 
-@media (max-width: 500px) {
-  .page-title{
+  .how-to-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .page-title {
     padding-left: 1rem;
     padding-right: 1rem;
   }
