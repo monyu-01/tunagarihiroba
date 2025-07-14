@@ -3,51 +3,62 @@
   <p class="mb-4">まずは、つながり広場に参加する方法をお選びください</p>
 
   <div class="d-flex flex-md-row justify-content-center gap-3 mb-3">
-    <%= link_to "はじめての方", new_member_registration_path, class: "btn btn-success px-4 py-2 btn-lg" %>
-    <%= link_to "見学してみる", "#", class: "btn btn-success px-4 py-2 btn-lg" %>
+    <%= link_to "はじめての方", new_member_registration_path, class: "btn btn-success px-4 py-2 btn-lg responsive-btn" %>
+    <%= link_to "見学してみる", "#", class: "btn btn-success px-4 py-2 btn-lg responsive-btn" %>
   </div>
   <div class="mt-2">
-    <%= link_to "マイページに入る", new_member_session_path, class: "btn btn-outline-success px-4 py-2 mb-5 btn-lg" %>
+    <%= link_to "マイページに入る", new_member_session_path, class: "btn btn-outline-success px-4 py-2 btn-lg responsive-btn" %>
   </div>
 </div>
 
-<div class="container py-5">
-  <h2 class="text-center mb-3 fw-bold">つながり広場ってどんなサービス？</h2>
+<div class="container text-center py-5">
+  <h2 class="mb-3 fw-bold d-none d-sm-block">つながり広場ってどんなサービス？</h2>
+  <h2 class="mb-3 fw-bold d-block d-sm-none">つながり広場ってどんな<br>サービス？</h2>
   <p class="text-center mb-1">
     病気とともに生きる人やその家族が、<br>
     安心して投稿・共有できる共感型のSNSサービスです。
   </p>
-  <div class="row justify-content-center text-center">
+  <div class="row justify-content-center">
     <div class="col-md-4 mb-3">
-      <%= image_tag('man_with_idea.png', class: 'img-fluid mb-0 mt-0', alt: 'スマホの女性') %>
-      <p class="mt-1 mb-0">病気に直面した本人やその家族が、生活の工夫や<br>
-           体験を自由に発信できるSNSです。</p>
+      <%= image_tag('woman_using_smartphone.png', class: 'img-fluid mb-4 mt-4', alt: 'スマホの女性') %>
+      <p class="d-none d-sm-block">
+        病気に直面した本人やその家族が、生活の工夫や<br>
+        体験を自由に発信できるSNSです。
+      </p>
+      <p class="d-block d-sm-none">
+        病気に直面した本人やその家族が、生活の<br>
+        工夫や体験を自由に発信できる<br>
+        SNSです。
+      </p>     
     </div>
     <div class="col-md-4 mb-3">
-      <%= image_tag('woman_using_smartphone.png', class: 'img-fluid mb-0 mt-0', alt: 'ひらめいた男性') %>
-      <p class="mt-1 mb-0">病気との向き合い方や心の持ちようなど、日常の中の<br>
-         気づきを投稿・共有できます。</p>
+      <%= image_tag('man_with_idea.png', class: 'img-fluid mb-4 mt-4', alt: 'ひらめいた男性') %>
+      <p class="d-none d-sm-block">病気との向き合い方や心の持ちようなど、日常の中の<br>
+        気づきを投稿・共有できます。</p>
+      <p class="d-block d-sm-none">病気との向き合い方や心の持ちようなど、<br>
+        日常の中の気づきを投稿・共有<br>
+        できます。</p>
     </div>
     <div class="col-md-4 mb-3">
-      <%= image_tag('relieved_woman.png', class: 'img-fluid mb-0 mt-0', alt: '安心した女性') %>
-      <p class="mt-1 mb-0">医療情報ではなく暮らし方をテーマにした、<br>
-           安心して参加できるスペースです。</p>
+      <%= image_tag('relieved_woman.png', class: 'img-fluid mb-4 mt-4', alt: '安心した女性') %>
+      <p>医療情報ではなく暮らし方をテーマにした、<br>
+         安心して参加できるスペースです。</p>
     </div>
   </div>
 </div>
 
-<%# <div class="my-5"> %>
-  <%# <div class="container bg-light rounded-3 py-5 px-4 align-items-center justify-content-between"> %>
-    <%# <div class="mb-4 ms-md-5" style="max-width: 600px;"> %>
-      <%# <h2 class="fw-bold mb-5">誰でも使える、優しい設計</h2> %>
-      <%# <p class="mb-5"> %>
-        <%# つながり広場は、はじめてSNSを利用する人でも簡単にすぐに始められます。<br> %>
-        <%# 投稿の仕方や、他の人の交流方法などを、画像付きでわかりやすく紹介しています。<br> %>
-        <%# まずは「どんなことができるのか？」を、のぞいてみてください。 %>
-      <%# </p> %>
-      <%# <%= link_to "使い方を見てみる", how_to_path, class: "btn btn-outline-success px-4 py-2" %>
-    <%# </div> %>
-  <%# </div> %>
-<%# </div> %>
+ <div class="my-5"> 
+   <div class="container bg-light rounded-3 py-5 px-4 align-items-center justify-content-between">
+     <div class="mb-4 ms-md-5 explain-box">
+       <h2 class="fw-bold mb-5">誰でも使える、優しい設計</h2>
+       <p class="mb-5"> 
+         つながり広場は、はじめてSNSを利用する人でも簡単にすぐに始められます。<br>
+         投稿の仕方や、他の人の交流方法などを、画像付きでわかりやすく紹介しています。<br>
+         まずは「どんなことができるのか？」を、のぞいてみてください。
+      </p>
+      <%= link_to "使い方を見てみる", how_to_path, class: "btn btn-outline-success px-4 py-2" %>
+    </div>
+  </div>
+</div> 
 
 
