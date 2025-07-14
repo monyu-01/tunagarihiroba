@@ -1,1 +1,1 @@
-$('.comments-index').html("<%= j(render 'public/comments/index', post: @comment.post) %>")
+$('.comments-index').html("<%= j(render 'public/comments/index', comments: @comment.post.comments.with_available_members) %>")
