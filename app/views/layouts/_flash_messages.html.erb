@@ -1,11 +1,19 @@
 <% if notice %>
-  <div class="alert alert-success text-center container w-50 custom-width mt-4 mb-4">
-    <%= notice %>
+  <div class="container">
+    <div class="d-flex justify-content-center mt-4 mb-2">
+      <div class="alert alert-success text-center w-50">
+        <%= notice %>
+      </div>
+    </div>
   </div>
 <% end %>
 
 <% if alert %>
-  <div class="alert alert-danger text-center container w-50 custom-width mt-4 mb-4">
-    <%= alert %>
+  <div class="container">
+    <div class="d-flex justify-content-center mt-4 mb-2">
+      <div class="alert alert-danger text-center w-50">
+        <%= alert %>
+      </div>
+    </div>
   </div>
 <% end %>

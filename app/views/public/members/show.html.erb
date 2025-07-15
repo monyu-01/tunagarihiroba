@@ -1,43 +1,45 @@
 <div class="border-bottom mt-4">
-  <div class="w-75 container">
-    <div class="d-flex flex-column flex-md-row align-items-start gap-4 mb-4">
-      <div>
-        <%= image_tag @member.get_profile_image(100,100), class: "rounded-circle" %>
-      </div>
-      <div class="flex-grow-1">
-        <h3><%= @member.name %></h3>
-        <p><%= @member.self_introduction %></p>
-        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-          <% if current_member == @member %> 
-            <%= link_to edit_member_registration_path, class: "btn btn-outline-dark btn-sm" do %>
-              <i class="fa-solid fa-user-gear"></i> 個人情報編集
-            <% end %>
-            <%= link_to edit_profile_path, class: "btn btn-outline-dark btn-sm" do %>
-              <i class="fa-solid fa-file-pen"></i> マイページ編集
-            <% end %>
-          <% end %>
-          <%= link_to followings_member_path(@member), class: "btn btn-outline-dark btn-sm" do %>
-            <i class="fa-solid fa-handshake-simple"></i> 応援している人
-          <% end %>
-          <%= link_to followers_member_path(@member), class: "btn btn-outline-dark btn-sm" do %>
-            <i class="fa-solid fa-hand-holding-heart"></i> 応援されている人
-          <% end %>
-          <div id="relastionships-btn-<%= @member.id %>">
-            <%= render 'public/relationships/follow_btn', member: @member %>
-          </div>
-          <span class="ms-auto">
-            <%= render 'public/reports/report_btn', member: @member %>
-          </span>
+  <div class="container">
+    <div class="w-75 mx-auto title-responsive-md">
+      <div class="d-flex flex-column flex-md-row align-items-start gap-4 mb-4">
+        <div>
+          <%= image_tag @member.get_profile_image(100,100), class: "rounded-circle" %>
         </div>
-      </div>
-    </div><%# d-flex flex-column flex-md-row align-items-start gap-4 mb-4 %>
-  </div><%# w-75 container %>
+        <div class="flex-grow-1">
+          <h3><%= @member.name %></h3>
+          <p><%= @member.self_introduction %></p>
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <% if current_member == @member %> 
+              <%= link_to edit_member_registration_path, class: "btn btn-outline-dark btn-sm" do %>
+                <i class="fa-solid fa-user-gear"></i> 個人情報編集
+              <% end %>
+              <%= link_to edit_profile_path, class: "btn btn-outline-dark btn-sm" do %>
+                <i class="fa-solid fa-file-pen"></i> マイページ編集
+              <% end %>
+            <% end %>
+            <%= link_to followings_member_path(@member), class: "btn btn-outline-dark btn-sm" do %>
+              <i class="fa-solid fa-handshake-simple"></i> 応援している人
+            <% end %>
+            <%= link_to followers_member_path(@member), class: "btn btn-outline-dark btn-sm" do %>
+              <i class="fa-solid fa-hand-holding-heart"></i> 応援されている人
+            <% end %>
+            <div id="relastionships-btn-<%= @member.id %>">
+              <%= render 'public/relationships/follow_btn', member: @member %>
+            </div>
+            <span class="ms-auto">
+              <%= render 'public/reports/report_btn', member: @member %>
+            </span>
+          </div>
+        </div>
+      </div><%# d-flex flex-column flex-md-row align-items-start gap-4 mb-4 %>
+    </div><%# w-75 mx-auto title-responsive-md %>
+  </div><%# container %>
 </div><%# border-bottom mt-4 %>
 
 <%= render 'layouts/flash_messages' %>
-<div class="card-list-container py-2">
+<div class="container py-2">
   <% @posts.each do |post| %>
-  <div class="card w-50 mx-auto mt-4 post-list">
+  <div class="card w-50 mx-auto mt-4 content-responsive-md">
     <div class="card-header bg-white d-flex justify-content-between align-items-center">
       <%= link_to member_path(post.member), class: "text-decoration-none link-dark d-flex align-items-center" do %>
         <%= image_tag post.member.get_profile_image(50, 50), alt: "プロフィール画像", class: "rounded-circle me-3" %> 
@@ -47,7 +49,7 @@
         <%= link_to "投稿を編集する", edit_post_path(post), class: "btn btn-outline-secondary btn-sm" %>
       <% end %> 
     </div>
-    <%= image_tag post.get_image(600, 500), alt: "投稿画像", class: "card-img-top", style: "max-height: 500px; object-fit: cover;" %>
+    <%= image_tag post.get_image(600, 500), alt: "投稿画像" %>
     <div class="card-body">
       <h4 class="card-title"><%= post.title %></h4>
       <p class="card-text">投稿の種類：<%= post.genre.present? ? post.genre.name : "未選択" %></p>
@@ -59,7 +61,6 @@
   </div>
   <% end %>
 </div>
-
 
 <div class="d-flex justify-content-center mt-4">
   <%= paginate @posts, theme: 'bootstrap-5' %>

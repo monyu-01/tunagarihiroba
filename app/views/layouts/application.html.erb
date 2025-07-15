@@ -11,18 +11,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="page-wrapper">
+  <body>
     <% if member_signed_in? && current_member.guest? %>
       <%= render 'layouts/guest_header' %>
       <%= render 'layouts/flash_messages' %>
       <%= yield %>
     <% elsif member_signed_in? %>
-      <div class="layout">
+      <div class="container layout">
         <div class="row">
           <div class="col-xl-3 d-none d-xl-block sidebar-left border-end">
             <%= render 'layouts/sidebar' %>
           </div>
-          <div class="col-xl-9 col-12">
+          <div class="col-xl-9 col-12 px-3">
             <div class="d-xl-none mb-2">
               <%= render 'layouts/hamburger_menu' %>
             </div>

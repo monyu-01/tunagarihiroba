@@ -1,8 +1,24 @@
 @import "~bootstrap/scss/bootstrap";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
   overflow-y: auto;
+}
+
+.sidebar-logo-img {
+  width: 150px;
+  height: 100px;
+}
+
+.header-logo-img {
+  width: 120px;
+  height: 80px;
 }
 
 .explain-box {
@@ -17,6 +33,11 @@ html, body {
 .top-icon {
   height: 150px;
   width: 150px;
+}
+
+.card-img-top {
+  max-height: 500px; 
+  object-fit: cover;
 }
 
 .card-guide{
@@ -67,21 +88,10 @@ input[type="radio"] {
     padding: 0.25rem 0.75rem;
   }
 
-  .container.w-50,
-  .alert-warning.custom-width,
-  .alert-success.custom-width,
-  .alert-danger.custom-width {
-    width: 75% !important;
-  }
-
-  .saved-posts-container.w-50,
-  .container.notifications-page,
-  .report-page.w-75,
-  .search-page.w-50,
-  .post-list.w-50,
-  .search-title.w-50,
-  .page-title.w-50,
-  .how-to-page.w-50 {
+  .title-responsive-sm.w-75,
+  .title-responsive-sm.w-50,
+  .content-responsive-sm.w-75,
+  .content-responsive-sm.w-50 {
     width: 100% !important;
   }
 
@@ -89,8 +99,20 @@ input[type="radio"] {
     width: 100%;
     height: auto;
   }
+}
 
-  .page-title {
+@media (max-width: 1000px) {
+  .alert-warning.w-50,
+  .alert-success.w-50,
+  .alert-danger.w-50,
+  .title-responsive-md.w-75,
+  .title-responsive-md.w-50,
+  .content-responsive-md.w-75, 
+  .content-responsive-md.w-50 {
+    width: 100% !important;
+  }
+
+  .title-responsive-md {
     padding-left: 1rem;
     padding-right: 1rem;
   }

@@ -1,20 +1,26 @@
 <% if current_member&.guest? %>
-  <div class="alert alert-warning text-center container w-50 custom-width mt-4 py-2">
-    <p class="fw-bold mb-1">ゲストモードでご利用中です。</p>
-    <p class="mb-0 small lh-sm">※登録すると、プロフィール・コメント<br>
-    保存機能などをご利用いただけます。</p>
+  <div class="container">
+    <div class="alert alert-warning text-center w-50 mx-auto mt-4 py-2">
+      <p class="fw-bold mb-1">ゲストモードでご利用中です。</p>
+      <p class="mb-0 small lh-sm">
+        ※登録すると、プロフィール・コメント<br>
+        保存機能などをご利用いただけます。
+      </p>
+    </div>
   </div>
 <% elsif current_member %>
   <div class="border-bottom mt-4">
-    <div class="container w-50 page-title">
-      <h2 class="mb-4">投稿を探す</h2>
+    <div class="container">
+      <div class="w-50 mx-auto title-responsive-md">
+        <h2 class="mb-4">投稿を探す</h2>
+      </div>
     </div>
   </div> 
 <% end %>
 
 <div class="card-list-container py-3">
   <%= render 'public/posts/search_form' %>
-  <div class="w-50 mx-auto mt-4 page-title">
+  <div class="w-50 mx-auto mt-4 title-responsive-md">
     <% if params[:keyword].present? || params[:genre_ids].present? %>
       <h4>検索結果（<%= @posts.total_count %> 件）</h4>
     <% else %>
