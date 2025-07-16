@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-start my-3 ps-4 sidebar-logo">
   <%= link_to root_path, class: "navbar-brand " do %>
-    <%= image_tag "tsunagari_logo_flower.png", alt: "つながり広場のロゴ", width: 150, height: 100 %>
+    <%= image_tag "tsunagari_logo_flower.png", alt: "つながり広場のロゴ", class: "sidebar-logo-img" %>
   <% end %>
 </div>
-<div class="flex-column nav ps-3">
+<div class="flex-column nav">
   <%= link_to new_post_path, class: "nav-link text-body sidebar-link-large" do %>
     <i class="fa-regular fa-pen-to-square me-3"></i> 新規投稿
   <% end %>

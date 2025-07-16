@@ -4,7 +4,7 @@
 
   <div class="d-flex flex-md-row justify-content-center gap-3 mb-3">
     <%= link_to "はじめての方", new_member_registration_path, class: "btn btn-success px-4 py-2 btn-lg responsive-btn" %>
-    <%= link_to "見学してみる", class: "btn btn-success px-4 py-2 btn-lg responsive-btn" %>
+    <%= link_to "見学してみる", members_guest_sign_in_path, class: "btn btn-success px-4 py-2 btn-lg responsive-btn", method: :post %>
   </div>
   <div class="mt-2">
     <%= link_to "マイページに入る", new_member_session_path, class: "btn btn-outline-success px-4 py-2 btn-lg responsive-btn" %>

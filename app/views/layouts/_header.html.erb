@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg bg-light navbar-light">
     <div class="container-fluid px-5">
       <%= link_to root_path, class: "navbar-brand" do %>
-        <%= image_tag "tsunagari_logo_flower.png", alt: "つながり広場のロゴ", width: 120, height: 80 %>
+        <%= image_tag "tsunagari_logo_flower.png", alt: "つながり広場のロゴ", class: "header-logo-img" %>
       <% end %>
       <button class="navbar-toggler d-flex align-items-center d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon me-2"></span> 項目の一覧
@@ -16,7 +16,7 @@
             <%= link_to "マイページに入る", new_member_session_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "のぞいてみる", members_guest_sign_in_path, class: "nav-link", method: :post %>
+            <%= link_to "見学してみる", members_guest_sign_in_path, class: "nav-link", method: :post %>
           </li> 
           <li class="nav-item">
             <%= link_to "サイトの使い方", how_to_path, class: "nav-link" %>

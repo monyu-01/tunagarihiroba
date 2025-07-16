@@ -1,37 +1,40 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 
-<div class="container w-50 notifications-page mt-2">
-  <div class="list-group">
-    <div class="list-group-item">
-      <div class="d-flex align-items-start">
-        <div class="me-2">
-          <%= link_to member_path(visitor), class: "text-decoration-none" do %>
-            <%= image_tag visitor.get_profile_image(40, 40), class: "rounded-circle" %>
-          <% end %>
-        </div>
-        <div class="flex-grow-1">
-          <p class="mb-1">
-            <%= link_to visitor.name, member_path(visitor), class: "fw-bold text-success text-decoration-none" %> さんが
-            <% if notification.action == 'follow' %>
-              あなたをフォローしました。
-            <% elsif notification.action == 'comment' %>
-              <%= link_to 'あなたの投稿', notification.post, class: "fw-bold text-success text-decoration-none" %> にコメントしました。
+<div class="container mt-2">
+  <div class="w-50 mx-auto content-responsive-md">
+    <div class="list-group">
+      <div class="list-group-item">
+        <div class="d-flex align-items-start">
+          <div class="me-2">
+            <%= link_to member_path(visitor), class: "text-decoration-none" do %>
+              <%= image_tag visitor.get_profile_image(40, 40), class: "rounded-circle" %>
             <% end %>
-          </p>
-
-          <% if notification.action == 'comment' %>
-            <p class="text-muted mb-0">
-              <%= notification.comment&.comment_body %>
+          </div>
+          <div class="flex-grow-1">
+            <p class="mb-1">
+              <%= link_to visitor.name, member_path(visitor), class: "fw-bold text-success text-decoration-none" %> さんが
+              <% if notification.action == 'follow' %>
+                あなたをフォローしました。
+              <% elsif notification.action == 'comment' %>
+                <%= link_to 'あなたの投稿', notification.post, class: "fw-bold text-success text-decoration-none" %> にコメントしました。
+              <% end %>
             </p>
-          <% end %>
+  
+            <% if notification.action == 'comment' %>
+              <p class="text-muted mb-0">
+                <%= notification.comment&.comment_body %>
+              </p>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  
+    <div class="small text-muted text-end text-right d-flex justify-content-end">
+      <%= time_ago_in_words(notification.created_at).upcase %>
+    </div>
+    <hr>
+  </div><%# w-50 mx-auto content-responsive-md %>
+</div><%# container mt-2 %>
 
-  <div class="small text-muted text-end text-right d-flex justify-content-end">
-    <%= time_ago_in_words(notification.created_at).upcase %>
-  </div>
-  <hr>
-</div>

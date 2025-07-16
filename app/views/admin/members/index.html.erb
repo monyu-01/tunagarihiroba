@@ -1,36 +1,38 @@
-<div class="container w-75 mt-4 mb-4">
-  <h2 class="mb-4">登録者一覧</h2>
-
-  <table class="table table-bordered">
-    <thead>
-      <tr class="table-success">
-        <th>登録ID</th>
-        <th>利用状況</th>
-        <th>氏名</th>
-        <th>メールアドレス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @members.each do |member| %>
-        <tr>
-          <td><%= member.id %></td>
-          <td>
-            <% if member.user_status == "available" %>
-              <span class="badge bg-success">利用可能</span>
-            <% else %>
-              <span class="badge bg-danger">利用停止中</span>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to member.name, admin_member_path(member), class: "text-primary" %>
-          </td>
-          <td><%= member.email %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="container mt-4 mb-4">
+  <div class="w-75 mx-auto">
+    <h2 class="mb-4">登録者一覧</h2>
   
-  <div class="d-flex justify-content-center mt-4">
-    <%= paginate @members, theme: 'bootstrap-5' %>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-success">
+          <th>登録ID</th>
+          <th>利用状況</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @members.each do |member| %>
+          <tr>
+            <td><%= member.id %></td>
+            <td>
+              <% if member.user_status == "available" %>
+                <span class="badge bg-success">利用可能</span>
+              <% else %>
+                <span class="badge bg-danger">利用停止中</span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to member.name, admin_member_path(member), class: "text-primary" %>
+            </td>
+            <td><%= member.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-center mt-4">
+      <%= paginate @members, theme: 'bootstrap-5' %>
+    </div>
   </div>
 </div>

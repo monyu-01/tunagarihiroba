@@ -1,63 +1,65 @@
-<div class="container w-75 mt-4 mb-5">
-  <div class="d-flex align-items-center mb-4">
-    <%= image_tag @post.member.get_profile_image(70, 70), alt: "プロフィール画像", class: "rounded-circle me-3" %>
-    <h2 class="mb-0"><%= @post.member.name %>さんの投稿詳細</h2>
+<div class="container mt-4 mb-5">
+  <div class="w-75 mx-auto">
+    <div class="d-flex align-items-center mb-4">
+      <%= image_tag @post.member.get_profile_image(70, 70), alt: "プロフィール画像", class: "rounded-circle me-3" %>
+      <h2 class="mb-0"><%= @post.member.name %>さんの投稿詳細</h2>
+    </div>
+  
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-success text-center">
+          <th class="w-25">項目名</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @post.member.email %></td>
+        </tr>
+        <tr>
+          <th>投稿日</th>
+          <td><%= l(@post.created_at ,format: "%Y/%m/%d %H:%M") %></td>
+        </tr>
+        <tr>
+          <th>タイトル</th>
+          <td><%= @post.title %></td>
+        </tr>
+        <tr>
+          <th>投稿画像</th>
+          <td>
+            <% if @post.image.attached? %>
+              <%= image_tag @post.get_image(300, 200), class: "img-fluid mt-2" %>
+            <% else %>
+              <span class="text-muted">画像なし</span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= @post.genre&.name || "未分類" %></td>
+        </tr>
+        <tr>
+          <th>投稿内容</th>
+          <td><%= @post.body %></td>
+        </tr>
+        <tr>
+          <th>コメント一覧</th>
+          <td>
+            <%= render 'admin/comments/comments_list', comments: @post.comments %>
+          </td>
+        </tr>
+        <tr>
+          <th>投稿削除</th>
+          <td class="text-center">
+            <%= button_to '投稿を削除する', admin_post_path(@post), method: :delete,
+              data: {
+                confirm: "このメンバーの投稿を削除します。\n削除前に登録メールアドレスへ管理者から直接連絡してください。\n連絡済みであることをご確認の上、続行してください。"
+              },
+              class: "btn btn-danger" %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <table class="table table-bordered">
-    <thead>
-      <tr class="table-success text-center">
-        <th class="w-25">項目名</th>
-        <th>内容</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= @post.member.email %></td>
-      </tr>
-      <tr>
-        <th>投稿日</th>
-        <td><%= l(@post.created_at ,format: "%Y/%m/%d %H:%M") %></td>
-      </tr>
-      <tr>
-        <th>タイトル</th>
-        <td><%= @post.title %></td>
-      </tr>
-      <tr>
-        <th>投稿画像</th>
-        <td>
-          <% if @post.image.attached? %>
-            <%= image_tag @post.get_image(300, 200), class: "img-fluid mt-2" %>
-          <% else %>
-            <span class="text-muted">画像なし</span>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>ジャンル</th>
-        <td><%= @post.genre&.name || "未分類" %></td>
-      </tr>
-      <tr>
-        <th>投稿内容</th>
-        <td><%= @post.body %></td>
-      </tr>
-      <tr>
-        <th>コメント一覧</th>
-        <td>
-          <%= render 'admin/comments/comments_list', comments: @post.comments %>
-        </td>
-      </tr>
-      <tr>
-        <th>投稿削除</th>
-        <td class="text-center">
-          <%= button_to '投稿を削除する', admin_post_path(@post), method: :delete,
-            data: {
-              confirm: "このメンバーの投稿を削除します。\n削除前に登録メールアドレスへ管理者から直接連絡してください。\n連絡済みであることをご確認の上、続行してください。"
-            },
-            class: "btn btn-danger" %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>
