@@ -1,14 +1,16 @@
 <% comments.each do |comment| %>
   <div class="d-flex flex-column flex-md-row border-bottom align-items-start justify-content-between py-3 gap-2">
-    <div class="d-flex flex-column flex-md-row align-items-md-center w-100">
-      <%= link_to member_path(comment.member), class: "text-decoration-none link-dark d-flex align-items-center mb-2 mb-md-0 me-md-3" do %>
+    <div class="d-flex flex-column w-100">
+      <%= link_to member_path(comment.member), class: "text-decoration-none link-dark d-flex align-items-center mb-2 me-3" do %>
         <%= image_tag comment.member.get_profile_image(35,35), alt: "プロフィール画像", class: "rounded-circle me-2" %>
         <span class="text-nowrap"><%= comment.member.name %></span>
       <% end %>
-      <p class="mb-0 ms-md-3 text-break"><%= comment.comment_body %></p>
+      <p class="mb-0 ms-3 text-break"><%= comment.comment_body %></p>
+      <% if comment.member == current_member %>
+        <div class="d-flex justify-content-end mt-2">
+          <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, remote: true, class: "btn btn-outline-danger btn-sm text-nowrap" %>
+        </div>
+      <% end %>
     </div>
-    <% if comment.member == current_member %>
-      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, remote: true, class: "btn btn-outline-danger btn-sm align-self-md-center text-nowrap" %>
-    <% end %>
   </div>
 <% end %>

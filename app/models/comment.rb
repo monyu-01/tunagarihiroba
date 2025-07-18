@@ -6,5 +6,5 @@ class Comment < ApplicationRecord
     joins(:member).merge(Member.available).includes(:member)
   }
 
-  validates :comment_body, presence: true
+  validates :comment_body, presence: true, length: { maximum: 300 }
 end

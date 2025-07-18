@@ -5,6 +5,9 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :saved_posts, dependent: :destroy
   has_many :notifications, dependent: :destroy
+
+  validates :title, presence: true, length: { maximum: 30 }
+  validates :body, presence: true, length: { maximum: 1000 }
   
   scope :with_available_members, -> {
     joins(:member).merge(Member.available).includes(:member, :genre)
@@ -15,7 +18,7 @@ class Post < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/default_post_icon_flower.png')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpg') 
     end
-    image.variant(resize_to_limit: [width, height]).processed
+    image.variant(resize_to_fill: [width, height]).processed
   end
 
   def saved_post_by?(member)
@@ -39,8 +42,4 @@ class Post < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-
-
-  validates :title,  presence: true
-  validates :body, presence: true
 end

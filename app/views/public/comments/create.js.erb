@@ -1,2 +1,3 @@
 $('.form-control').val("")
 $('.comments-index').html("<%= j(render 'public/comments/index', comments: @comment.post.comments.with_available_members) %>")
+$(".error-message-area").html("")
