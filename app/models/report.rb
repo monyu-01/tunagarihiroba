@@ -2,7 +2,8 @@ class Report < ApplicationRecord
   belongs_to :reporter, class_name: 'Member'
   belongs_to :reported, class_name: 'Member'
 
-  validates :reason, presence: true
+  validates :reason, presence: true, length: { in: 20..300 }
+  validates :reporter_id, uniqueness: { scope: :reported_id }
 
   after_create :update_user_status
 

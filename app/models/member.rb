@@ -30,7 +30,8 @@ class Member < ApplicationRecord
   has_many :reports_made, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
   has_many :reports_received, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
 
-  validates :name, presence: true, on: :update_profile
+  validates :name, presence: true, length: { maximum: 15 }, on: :update_profile
+  validates :self_introduction, length: { maximum: 500 }, allow_blank: true, on: :update_profile
   validates :user_status, presence: true
 
   def report_count
@@ -59,7 +60,7 @@ class Member < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/default_profile_icon_flower.png')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    profile_image.variant(resize_to_limit: [width, height]).processed
+    profile_image.variant(resize_to_fill: [width, height]).processed
   end
 
   def follow(member)
