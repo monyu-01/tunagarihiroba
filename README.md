@@ -57,7 +57,8 @@
 - HTTPS接続：Let's Encrypt + Certbot によるSSL証明書の自動更新
 - 監視：CloudWatch によるEC2インスタンスのステータス監視とアラート設定
 - インフラ構成図：
-<img src="assets/images/infra_diagram.png" width="571" height="571" alt="インフラ構成図" />
+
+<img src="docs/images/infra_diagram.png" width="571" height="571" alt="インフラ構成図" />
 
 ## ER図
-<img src="assets/images/er.png" width="571" height="571" alt="ER図" />
+<img src="docs/images/er.png" width="571" height="571" alt="ER図" />
