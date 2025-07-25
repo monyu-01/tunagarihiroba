@@ -54,6 +54,9 @@
       <h4 class="card-title"><%= post.title %></h4>
       <p class="card-text">投稿の種類：<%= post.genre.present? ? post.genre.name : "未選択" %></p>
       <div class="card-text"><%= simple_format(h(post.body)) %></div>
+      <div class="text-start small">
+        投稿日：<%= l(post.created_at, format: :short) %>
+      </div>
       <div class="text-end">
         <%= link_to "コメントはこちら", post_path(post), class: "btn btn-success btn-sm" %>
       </div>

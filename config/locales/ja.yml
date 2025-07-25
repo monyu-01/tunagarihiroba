@@ -1,4 +1,7 @@
 ja:
+ time:
+    formats:
+      short: "%-Y/%-m/%-d"
  activerecord:
    models:
      member: メンバー
