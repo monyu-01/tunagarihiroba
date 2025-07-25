@@ -20,7 +20,7 @@
         </tr>
         <tr>
           <th>理由</th>
-          <td><%= @report.reason %></td>
+          <td><%= simple_format(h(@report.reason)) %></td>
         </tr>
         <tr>
           <th>通報者</th>

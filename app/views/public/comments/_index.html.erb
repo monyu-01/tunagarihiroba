@@ -5,7 +5,7 @@
         <%= image_tag comment.member.get_profile_image(35,35), alt: "プロフィール画像", class: "rounded-circle me-2" %>
         <span class="text-nowrap"><%= comment.member.name %></span>
       <% end %>
-      <p class="mb-0 ms-3 text-break"><%= comment.comment_body %></p>
+      <div class="mb-0 ms-3 text-break"><%= simple_format(h(comment.comment_body)) %></div>
       <% if comment.member == current_member %>
         <div class="d-flex justify-content-end mt-2">
           <%= link_to "削除", post_comment_path(comment.post, comment),data: { confirm: "本当に削除してもよろしいですか？" }, method: :delete, remote: true, class: "btn btn-outline-danger btn-sm text-nowrap" %>

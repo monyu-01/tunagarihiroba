@@ -24,7 +24,7 @@
     <div class="card-body">
       <h4 class="card-title"><%= @post.title %></h4>
       <p class="card-text">投稿の種類：<%= @post.genre.present? ? @post.genre.name : "未選択" %></p>
-      <p class="card-text"><%= @post.body %></p>
+      <div class="card-text"><%= simple_format(h(@post.body)) %></div>
     </div>
     <div class="container">
       <div class="w-100 mx-auto bg-light rounded-3 py-5 px-4 align-items-center justify-content-between">
