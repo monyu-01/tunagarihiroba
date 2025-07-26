@@ -1,16 +1,13 @@
 <div class="container">
-  <%= render 'shared/form_error_messages', object: @genre %>
+  <div class="w-50 mx-auto mb-4">
+    <%= render 'shared/form_error_messages', object: @genre %>
+  </div>
 
   <h3 class="text-center mb-4 mt-4 genre-heading">ジャンル編集</h3>
 
   <%= form_with model: @genre, url: admin_genre_path(@genre) do |f| %>
     <div class="d-flex justify-content-center align-items-center gap-3 mb-4">
-      <div>
-        <%= f.label :name, "ジャンル名", class: "form-label fs-4 mb-0" %>
-      </div>
-      <div class="w-25">
-        <%= f.text_field :name, placeholder: "ジャンル名", class: "form-control form-control-lg w-100" %>
-      </div>
+      <%= render 'form_field', f: f %>
       <div>
         <%= f.submit "変更を保存", class: "btn btn-success btn-lg" %>
       </div>
