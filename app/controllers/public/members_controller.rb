@@ -8,7 +8,6 @@ class Public::MembersController < ApplicationController
     @posts = @member.posts.order(created_at: :desc).page(params[:page])
   end
 
-
   def edit_profile
     @member = current_member
   end
@@ -31,16 +30,16 @@ class Public::MembersController < ApplicationController
   end
 
   def saved_posts
-    base_scope = current_member.saved_posts_posts.joins(:member).merge(Member.available)
+    base_scope = current_member.saved_posts_posts.joins(:member).only_available
     @saved_posts = base_scope.order('saved_posts.created_at DESC').page(params[:page])
   end
 
   def followings
-    @followings = @member.followings.merge(Member.available).page(params[:page]).per(15)
+    @followings = @member.followings.only_available.page(params[:page]).per(15)
   end
 
   def followers
-    @followers = @member.followers.merge(Member.available).page(params[:page]).per(15)
+    @followers = @member.followers.only_available.page(params[:page]).per(15)
   end
 
   private

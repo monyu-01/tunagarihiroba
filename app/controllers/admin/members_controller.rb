@@ -29,7 +29,6 @@ class Admin::MembersController < ApplicationController
     redirect_to admin_members_path, notice: "メンバーを利用再開しました。"
   end
 
-
   private
 
   def member_params

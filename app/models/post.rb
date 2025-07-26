@@ -25,12 +25,12 @@ class Post < ApplicationRecord
     saved_posts.exists?(member_id: member.id)
   end
 
-  def create_notification_comment!(current_member, comment_id)
+  def create_notification_comment(current_member, comment_id)
     return if member_id == current_member.id  
-    save_notification_comment!(current_member, comment_id, member_id)
+    save_notification_comment(current_member, comment_id, member_id)
   end
 
-  def save_notification_comment!(current_member, comment_id, visited_id)
+  def save_notification_comment(current_member, comment_id, visited_id)
     notification = current_member.active_notifications.new(
       post_id: id,
       comment_id: comment_id,
