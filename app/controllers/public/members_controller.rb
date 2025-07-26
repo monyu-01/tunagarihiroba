@@ -30,7 +30,7 @@ class Public::MembersController < ApplicationController
   end
 
   def saved_posts
-    base_scope = current_member.saved_posts_posts.joins(:member).only_available
+    base_scope = current_member.saved_posts_posts.joins(:member).merge(Member.available)
     @saved_posts = base_scope.order('saved_posts.created_at DESC').page(params[:page])
   end
 
