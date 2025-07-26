@@ -10,7 +10,7 @@ class Public::NotificationsController < ApplicationController
     end 
 
     # 表示はアクティブユーザーからのみに限定
-    base_scope = current_member.passive_notifications.joins(:visitor).merge(Member.available)
+    base_scope = current_member.passive_notifications.joins(:visitor).merge(Member.available).order(created_at: :desc)
     @notifications = base_scope.includes(:visitor, :post, :comment).page(params[:page]).per(15) 
   end
 end

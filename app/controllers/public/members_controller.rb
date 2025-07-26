@@ -8,7 +8,6 @@ class Public::MembersController < ApplicationController
     @posts = @member.posts.order(created_at: :desc).page(params[:page])
   end
 
-
   def edit_profile
     @member = current_member
   end
@@ -36,11 +35,11 @@ class Public::MembersController < ApplicationController
   end
 
   def followings
-    @followings = @member.followings.merge(Member.available).page(params[:page]).per(15)
+    @followings = @member.followings.only_available.page(params[:page]).per(15)
   end
 
   def followers
-    @followers = @member.followers.merge(Member.available).page(params[:page]).per(15)
+    @followers = @member.followers.only_available.page(params[:page]).per(15)
   end
 
   private

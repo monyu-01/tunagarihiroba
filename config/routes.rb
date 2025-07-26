@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :destroy]
@@ -15,19 +14,17 @@ Rails.application.routes.draw do
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
-  sessions: "admin/sessions"
-}
-
-
+    sessions: "admin/sessions"
+  }
 
   namespace :public do
     get 'sessions/new'
   end
 
   devise_for :members, controllers: {
-  registrations: 'public/registrations',
-  sessions: 'public/sessions'
-}
+    registrations: 'public/registrations',
+    sessions: 'public/sessions'
+  }
 
   devise_scope :member do
     post "members/guest_sign_in", to: "public/sessions#guest_sign_in"
