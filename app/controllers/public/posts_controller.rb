@@ -3,9 +3,8 @@ class Public::PostsController < ApplicationController
   before_action :restrict_guest_member, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :is_matching_login_user, only: [:edit, :update]
-  before_action :set_genres, only: [:new, :edit, :create, :update, :show]
+  before_action :set_genres, only: [:index, :new, :edit, :create, :update, :show]
   
-
   def new
     @post = Post.new
   end
@@ -21,7 +20,6 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @genres = Genre.all
     @posts = Post.with_available_members
 
     if params[:keyword].present?

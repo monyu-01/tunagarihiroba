@@ -4,10 +4,14 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # Deviseの標準ログイン条件に加えて、独自の条件 available? を追加
+  # available? が false の場合はログイン不可 (利用停止中)      
   def active_for_authentication?
     super && available?
   end
   
+  # ログインできない場合のメッセージをカスタマイズ
+  # アカウントが suspended? の場合は :suspended を返し、それ以外はDeviseのデフォルトに従う
   def inactive_message
     suspended? ? :suspended : super
   end
@@ -33,6 +37,10 @@ class Member < ApplicationRecord
   validates :name, presence: true, length: { maximum: 15 }, on: :update_profile
   validates :self_introduction, length: { maximum: 500 }, allow_blank: true, on: :update_profile
   validates :user_status, presence: true
+
+  scope :only_available, -> {
+    merge(Member.available)
+  }
 
   def report_count
     Report.where(reported_id: id).count

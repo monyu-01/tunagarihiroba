@@ -8,7 +8,7 @@ class Public::CommentsController < ApplicationController
     @comment = current_member.comments.new(comment_params.merge(post_id: @post.id))
     
     if @comment.save
-      @post.create_notification_comment!(current_member, @comment.id)
+      @post.create_notification_comment(current_member, @comment.id)
     else
       @comment_body = @comment
       render :error
