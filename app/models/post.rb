@@ -26,20 +26,15 @@ class Post < ApplicationRecord
   end
 
   def create_notification_comment(current_member, comment_id)
-    return if member_id == current_member.id  
-    save_notification_comment(current_member, comment_id, member_id)
-  end
-
-  def save_notification_comment(current_member, comment_id, visited_id)
+    # 自己コメントなら通知なし
+    return if member_id == current_member.id
+  
     notification = current_member.active_notifications.new(
       post_id: id,
       comment_id: comment_id,
-      visited_id: visited_id,
+      visited_id: member_id, 
       action: 'comment'
     )
-    if notification.visitor_id == notification.visited_id
-      notification.checked = true
-    end
     notification.save if notification.valid?
   end
 end
