@@ -35,11 +35,11 @@ class Public::MembersController < ApplicationController
   end
 
   def followings
-    @followings = @member.followings.only_available.page(params[:page]).per(15)
+    @followings = @member.followings.only_available_with_avatar.page(params[:page]).per(15)
   end
 
   def followers
-    @followers = @member.followers.only_available.page(params[:page]).per(15)
+    @followers = @member.followers.only_available_with_avatar.page(params[:page]).per(15)
   end
 
   private

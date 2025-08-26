@@ -18,8 +18,6 @@ class Member < ApplicationRecord
 
   enum user_status: { available: 0, suspended: 1 }
 
-  scope :available, -> { where(user_status: :available) }
-
   has_one_attached :profile_image, dependent: :destroy  
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -38,8 +36,10 @@ class Member < ApplicationRecord
   validates :self_introduction, length: { maximum: 500 }, allow_blank: true, on: :update_profile
   validates :user_status, presence: true
 
-  scope :only_available, -> {
-    merge(Member.available)
+  scope :available, -> { where(user_status: :available) }
+
+  scope :only_available_with_avatar, -> {
+    merge(Member.available).with_attached_profile_image
   }
 
   def report_count
