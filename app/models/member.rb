@@ -46,10 +46,6 @@ class Member < ApplicationRecord
     Report.where(reported_id: id).count
   end
 
-  def exceeded_report_limit?
-    report_count >= 3
-  end
-
   GUEST_MEMBER_EMAIL = "guest@example.com"
 
   def self.guest
