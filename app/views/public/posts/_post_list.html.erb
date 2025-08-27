@@ -4,7 +4,7 @@
      <%= render 'shared/member_summary', member: post.member %>
     </div>
 
-    <%= image_tag post.get_image(600, 500), alt: "投稿画像", class: "card-img-top", style: "max-height: 500px; object-fit: cover;" %>
+    <%= image_tag post.image.variant(resize_to_fill: [600, 500]), alt: "投稿画像", class: "card-img-top", style: "max-height: 500px; object-fit: cover;" %>
     
     <div class="card-body">
       <h4 class="card-title"><%= post.title %></h4>

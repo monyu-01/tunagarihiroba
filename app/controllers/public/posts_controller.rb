@@ -40,8 +40,16 @@ class Public::PostsController < ApplicationController
   end
 
   def followings
-    following_ids = current_member.following_ids
-    @posts = Post.with_available_members.where(member_id: following_ids).order(created_at: :desc).page(params[:page])
+    @posts = current_member.followed_posts.with_available_members.order(created_at: :desc).page(params[:page])
+    
+    ActiveRecord::Associations::Preloader.new.preload(
+      @posts,
+      [
+        :genre,                                            # Post -> Genre
+        { image_attachment: { blob: :variant_records } },  # Post -> image
+        { member: { profile_image_attachment: :blob } }    # Post -> Member -> profile_image
+      ]
+    )
   end
 
   def edit
