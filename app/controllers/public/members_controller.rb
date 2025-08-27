@@ -30,8 +30,24 @@ class Public::MembersController < ApplicationController
   end
 
   def saved_posts
-    base_scope = current_member.saved_posts_posts.joins(:member).merge(Member.available)
-    @saved_posts = base_scope.order('saved_posts.created_at DESC').page(params[:page])
+    # ページ分のPostを取得（在籍メンバーに限定）
+    base_scope = current_member.saved_posts_posts
+                               .joins(:member)                 # 在籍フィルタ用の結合
+                               .merge(Member.available)
+                               .order('saved_posts.created_at DESC')
+
+    @saved_posts = base_scope.page(params[:page])
+
+    # N+1一掃：結果集合に対して必要な関連を明示プリロード
+    # Active Recordの関連付けを効率的に事前読み込みするためのクラス
+    ActiveRecord::Associations::Preloader.new.preload(
+      @saved_posts,
+      [
+        :genre,                                            # Post -> Genre
+        { image_attachment: { blob: :variant_records } },  # Post -> image
+        { member: { profile_image_attachment: :blob } }    # Post -> Member -> profile_image
+      ]
+    )
   end
 
   def followings
