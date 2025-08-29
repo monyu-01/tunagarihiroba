@@ -20,7 +20,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.with_available_members
+    @posts = Post.with_available_members_for_list
 
     if params[:keyword].present?
       kw = "%#{params[:keyword]}%"
@@ -40,16 +40,7 @@ class Public::PostsController < ApplicationController
   end
 
   def followings
-    @posts = current_member.followed_posts.with_available_members.order(created_at: :desc).page(params[:page])
-    
-    ActiveRecord::Associations::Preloader.new.preload(
-      @posts,
-      [
-        :genre,                                            # Post -> Genre
-        { image_attachment: { blob: :variant_records } },  # Post -> image
-        { member: { profile_image_attachment: :blob } }    # Post -> Member -> profile_image
-      ]
-    )
+    @posts = current_member.followed_posts.with_available_members_for_list.order(created_at: :desc).page(params[:page])
   end
 
   def edit
