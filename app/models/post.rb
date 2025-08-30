@@ -14,8 +14,8 @@ class Post < ApplicationRecord
     .merge(Member.available)
     .includes(
       :genre,
-      { image_attachment: { blob: :variant_records } },
-      { member: { profile_image_attachment: { blob: :variant_records } } }
+      { image_attachment: :blob },
+      { member: { profile_image_attachment: :blob } }
     )
   }
 

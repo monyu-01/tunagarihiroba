@@ -36,8 +36,8 @@ class Public::MembersController < ApplicationController
                                  .merge(Member.available)
                                  .includes(
                                    :genre, 
-                                   { image_attachment: { blob: :variant_records } },                      # Post -> image
-                                   { member: { profile_image_attachment: { blob: :variant_records } } }   # Member -> profile_image
+                                   { image_attachment: :blob },                      # Post -> image
+                                   { member: { profile_image_attachment: :blob } }   # Member -> profile_image
                                  )
                                  .order('saved_posts.created_at DESC')
                                  .page(params[:page])
