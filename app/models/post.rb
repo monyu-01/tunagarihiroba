@@ -9,8 +9,14 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 30 }
   validates :body, presence: true, length: { maximum: 1000 }
   
-  scope :with_available_members, -> {
-    joins(:member).merge(Member.available).includes(:member, :genre)
+  scope :with_available_members_for_list, -> {
+  joins(:member)
+    .merge(Member.available)
+    .includes(
+      :genre,
+      { image_attachment: :blob },
+      { member: { profile_image_attachment: :blob } }
+    )
   }
 
   def get_image(width, height)

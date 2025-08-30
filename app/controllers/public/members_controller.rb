@@ -30,16 +30,25 @@ class Public::MembersController < ApplicationController
   end
 
   def saved_posts
-    base_scope = current_member.saved_posts_posts.joins(:member).merge(Member.available)
-    @saved_posts = base_scope.order('saved_posts.created_at DESC').page(params[:page])
+    # ページ分のPostを取得（在籍メンバーに限定）
+    @saved_posts = current_member.saved_posts_posts
+                                 .joins(:member)                 # 在籍フィルタ用の結合
+                                 .merge(Member.available)
+                                 .includes(
+                                   :genre, 
+                                   { image_attachment: :blob },                      # Post -> image
+                                   { member: { profile_image_attachment: :blob } }   # Member -> profile_image
+                                 )
+                                 .order('saved_posts.created_at DESC')
+                                 .page(params[:page])
   end
 
   def followings
-    @followings = @member.followings.only_available.page(params[:page]).per(15)
+    @followings = @member.followings.only_available_with_avatar.page(params[:page]).per(15)
   end
 
   def followers
-    @followers = @member.followers.only_available.page(params[:page]).per(15)
+    @followers = @member.followers.only_available_with_avatar.page(params[:page]).per(15)
   end
 
   private
