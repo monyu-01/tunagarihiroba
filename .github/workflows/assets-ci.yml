@@ -1,0 +1,93 @@
+name: Assets (CI)   # Rails アプリのアセット (CSS/JS/画像) を CI でビルドするワークフロー
+
+on:
+  push:
+    branches: [main]   # mainブランチにpushされた時のみ発火
+    paths:             # 以下のファイルが変わった時に限定（リソース節約）
+      - 'app/assets/**'              # Rails の asset pipeline 用
+      - 'app/javascript/**'          # Webpacker / JS bundling 用
+      - 'config/initializers/assets.rb'
+      - 'config/webpack*'
+      - 'package.json'               # JS依存関係が変わった時
+      - 'yarn.lock'                  # JS依存のバージョンが変わった時
+  pull_request:
+    paths:             # PRでも同じフィルタを適用
+      - 'app/assets/**'
+      - 'app/javascript/**'
+      - 'config/initializers/assets.rb'
+      - 'config/webpack*'
+      - 'package.json'
+      - 'yarn.lock'
+
+jobs:
+  build-assets:
+    runs-on: ubuntu-latest   # GitHub が用意している最新の Ubuntu 環境で実行
+
+    env:
+      RAILS_ENV: production  # アセットは本番モードで precompile するのが前提
+      # SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+      # ↑ precompile が secret_key_base を要求した時だけ設定
+      #    rails secret で生成したダミーを secrets に登録すれば十分
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        # リポジトリの中身を runner に持ってくる
+
+      - name: Install MySQL dev libs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libmysqlclient-dev
+        # mysql2 gem をビルドするために必要なCライブラリを追加
+        # これを入れないと "mysql2 not found" エラーになる
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.2'   # 実際にEC2で動かしている Ruby に合わせる
+          bundler-cache: false    # prod-only の bundle install を後で明示的にやるためオフ
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16.20.2'
+        # Webpacker が Node を使うのでバージョン固定
+        # Node18 以降だと OpenSSL v3 で precompile が失敗することがある → Node16 が安定
+
+      - name: Cache yarn & sprockets
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/yarn          # yarn install のキャッシュ
+            tmp/cache/assets       # Sprockets が吐く中間キャッシュ
+          key: ${{ runner.os }}-assets-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-assets-
+        # キャッシュを効かせることで、yarn install / assets:precompile の時間を短縮できる
+
+      - name: Install JS deps
+        run: yarn install --frozen-lockfile
+        # JS依存パッケージを lockfile ベースでインストール
+        # --frozen-lockfile により lockfile と package.json が一致しない場合はエラー
+
+      - name: Bundle install (production only)
+        run: |
+          bundle config set without 'development test'
+          bundle install --jobs 4 --retry 3
+        # 本番に必要な Gem だけを入れる
+        # development/test 用は省くことで、CI が軽量化されセキュリティ的にも安全
+
+      - name: Precompile assets
+        run: bundle exec rails assets:precompile
+        # RAILS_ENV=production が env にあるので省略可
+        # 成功すれば public/assets (Sprockets) と public/packs (Webpacker) が生成される
+
+      - name: Upload artifacts (assets & packs)
+        uses: actions/upload-artifact@v4
+        with:
+          name: precompiled-assets
+          path: |
+            public/assets   # Sprockets/Propshaft 出力先
+            public/packs    # Webpacker 出力先
+        # 成果物を保存し、後続のCD (デプロイ) で再利用できるようにする
+        # キャッシュと違い "このビルドの成果物" を明示的に保存する仕組み
