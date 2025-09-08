@@ -25,9 +25,7 @@ jobs:
 
     env:
       RAILS_ENV: production  # アセットは本番モードで precompile するのが前提
-      # SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
-      # ↑ precompile が secret_key_base を要求した時だけ設定
-      #    rails secret で生成したダミーを secrets に登録すれば十分
+      SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE_CI }}
 
     steps:
       - name: Checkout
