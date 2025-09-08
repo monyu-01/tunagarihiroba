@@ -89,5 +89,6 @@ jobs:
           path: |
             public/assets   # Sprockets/Propshaft 出力先
             public/packs    # Webpacker 出力先
+          retention-days: 7 
         # 成果物を保存し、後続のCD (デプロイ) で再利用できるようにする
         # キャッシュと違い "このビルドの成果物" を明示的に保存する仕組み
