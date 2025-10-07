@@ -1,9 +1,9 @@
 class Public::PostsController < ApplicationController
   before_action :restrict_to_member!
   before_action :restrict_guest_member, except: [:index, :show]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
   before_action :is_matching_login_user, only: [:edit, :update]
-  before_action :set_genres, only: [:index, :new, :edit, :create, :update, :show]
+  before_action :set_genres, only: [:index, :new, :edit, :create, :update]
   
   def new
     @post = Post.new
@@ -20,7 +20,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.with_available_members
+    @posts = Post.with_available_members_for_list
 
     if params[:keyword].present?
       kw = "%#{params[:keyword]}%"
@@ -35,13 +35,13 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    @post = Post.with_available_members_for_list.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.with_available_members
   end
 
   def followings
-    following_ids = current_member.following_ids
-    @posts = Post.with_available_members.where(member_id: following_ids).order(created_at: :desc).page(params[:page])
+    @posts = current_member.followed_posts.with_available_members_for_list.order(created_at: :desc).page(params[:page])
   end
 
   def edit

@@ -30,6 +30,14 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.after_initialize do
+    Bullet.enable = true          # bulletを有効化
+    Bullet.alert = true           # ブラウザのJavaScriptアラートで警告
+    Bullet.bullet_logger = true   # Railsのログに警告を出力
+    Bullet.console = true         # ブラウザのコンソールに警告を出力
+    Bullet.rails_logger = true    # Railsのログに警告を出力
+  end
+
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 

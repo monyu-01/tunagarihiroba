@@ -2,7 +2,7 @@
   <div class="d-flex flex-column flex-md-row border-bottom align-items-start justify-content-between py-3 gap-2">
     <div class="d-flex flex-column w-100">
       <%= link_to member_path(comment.member), class: "text-decoration-none link-dark d-flex align-items-center mb-2 me-3" do %>
-        <%= image_tag comment.member.get_profile_image(35,35), alt: "プロフィール画像", class: "rounded-circle me-2" %>
+        <%= image_tag comment.member.profile_image.variant(resize_to_fit: [35, 35]), alt: "プロフィール画像", class: "rounded-circle me-2" %>
         <span class="text-nowrap"><%= comment.member.name %></span>
       <% end %>
       <div class="mb-0 ms-3 text-break"><%= simple_format(h(comment.comment_body)) %></div>

@@ -18,8 +18,6 @@ class Member < ApplicationRecord
 
   enum user_status: { available: 0, suspended: 1 }
 
-  scope :available, -> { where(user_status: :available) }
-
   has_one_attached :profile_image, dependent: :destroy  
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -29,6 +27,7 @@ class Member < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followings, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships,source: :follower
+  has_many :followed_posts, through: :followings, source: :posts
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_many :reports_made, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
@@ -38,16 +37,14 @@ class Member < ApplicationRecord
   validates :self_introduction, length: { maximum: 500 }, allow_blank: true, on: :update_profile
   validates :user_status, presence: true
 
-  scope :only_available, -> {
-    merge(Member.available)
+  scope :available, -> { where(user_status: :available) }
+
+  scope :only_available_with_avatar, -> {
+    merge(Member.available).with_attached_profile_image
   }
 
   def report_count
     Report.where(reported_id: id).count
-  end
-
-  def exceeded_report_limit?
-    report_count >= 3
   end
 
   GUEST_MEMBER_EMAIL = "guest@example.com"
