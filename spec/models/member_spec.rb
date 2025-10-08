@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Member, type: :model do
-  describe "バリデーション" do
+  describe "validations" do
     it { should validate_presence_of(:user_status) }
     it { should validate_presence_of(:name).on(:update_profile) }
     it { should validate_length_of(:name).is_at_most(15).on(:update_profile) }
@@ -12,7 +12,7 @@ RSpec.describe Member, type: :model do
     it { should define_enum_for(:user_status).with_values([:available, :suspended]) }
   end
 
-  describe "アソシエーション" do
+  describe "associations" do
     it { should have_one_attached(:profile_image) }
     it { should have_many(:posts).dependent(:destroy) }
     it { should have_many(:comments).dependent(:destroy) }
@@ -29,7 +29,7 @@ RSpec.describe Member, type: :model do
     it { should have_many(:reports_received).class_name("Report").with_foreign_key("reported_id").dependent(:destroy) }
   end
 
-  describe "スコープ" do
+  describe "scope" do
     let!(:available_member) { create(:member, user_status: :available) }
     let!(:suspended_member) { create(:member, user_status: :suspended) }
 

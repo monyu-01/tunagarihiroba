@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  describe "バリデーション" do
+  describe "validations" do
     it { should validate_presence_of(:title) }
     it { should validate_length_of(:title).is_at_most(30) }
     it { should validate_presence_of(:body) }
     it { should validate_length_of(:body).is_at_most(1000) }
   end
 
-  describe "アソシエーション" do
+  describe "associations" do
     it { should belong_to(:member) }
     it { should belong_to(:genre).optional }
     it { should have_one_attached(:image) }

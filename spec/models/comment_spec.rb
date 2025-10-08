@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  describe "バリデーション" do
+  describe "validations" do
     it { should validate_presence_of(:comment_body) }
     it { should validate_length_of(:comment_body).is_at_most(300) }
   end
 
-  describe "アソシエーション" do
+  describe "associations" do
     it { should belong_to(:member) }
     it { should belong_to(:post) }
   end
